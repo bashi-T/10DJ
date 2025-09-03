@@ -17,6 +17,12 @@ void mouthTracker::Update()
 	{
 		mouthPos_.x = static_cast<float>(point.x);
 		mouthPos_.y = static_cast<float>(point.y);
+
+#ifdef _DEBUG
+		ImGui::Begin("DEBUG2");
+		ImGui::Text("MouthPos %d,%d", (int)mouthPos_.x, (int)mouthPos_.y);
+		ImGui::End();
+#endif
 	}
 }
 
