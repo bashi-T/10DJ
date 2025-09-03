@@ -1,4 +1,5 @@
 #include "mouthTracker.h"
+#include <Windows.h>
 
 mouthTracker::mouthTracker()
 {
@@ -10,7 +11,12 @@ mouthTracker::~mouthTracker()
 
 void mouthTracker::UpdateMouthTracker()
 {
-	
+	POINT point;
+	if (GetCursorPos(&point))
+	{
+		mouthPos.x = static_cast<float>(point.x);
+		mouthPos.y = static_cast<float>(point.y);
+	}
 }
 
 Vector2 mouthTracker::GetMouthPos()

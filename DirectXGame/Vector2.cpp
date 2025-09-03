@@ -1,8 +1,15 @@
+#include "Vector2.h"
 #include <cmath>
 #include <iostream>
 
 class Vector2 {
 public:
+	struct Vector2D
+    {
+		float x;
+        float y;
+    }; 
+    
     float x, y;
 
     // コンストラクタ
