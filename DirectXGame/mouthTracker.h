@@ -1,4 +1,7 @@
 #pragma once
+#include <math/Vector2.h>
+
+using namespace KamataEngine;
 
 
 class mouthTracker
@@ -17,7 +20,8 @@ public:
 
 private:
 	
-	Vector2 mouthPos;
+	//マウス座標格納用
+	Vector2 mouthPos_ { };
 
 };
 

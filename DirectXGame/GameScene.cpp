@@ -30,7 +30,7 @@ void GameScene::Update()
 	#ifdef _DEBUG
 	ImGui::Begin("DEBUG1");
 	ImGui::Text("DebugText %d,%d,%d", 2025, 12, 31);
-	ImGui::Text("MouthPos %f,%f", mouthTracker_->GetMouthPos().x, mouthTracker_->GetMouthPos().y);
+	ImGui::Text("MouthPos %d,%d", (int)mouthTracker_->GetMouthPos().x, (int)mouthTracker_->GetMouthPos().y);
 	ImGui::End();
 	#endif
 }
