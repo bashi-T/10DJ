@@ -9,7 +9,7 @@ mouthTracker::~mouthTracker()
 {
 }
 
-void mouthTracker::UpdateMouthTracker()
+void mouthTracker::Update()
 {
 	POINT point;
 	if (GetCursorPos(&point))

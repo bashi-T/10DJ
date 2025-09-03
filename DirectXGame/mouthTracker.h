@@ -1,14 +1,23 @@
 #pragma once
-#include "Vector2.h"
+
 
 class mouthTracker
 {
 public:
+
 	mouthTracker();
+	
 	~mouthTracker();
-	void UpdateMouthTracker();
-	 Vector2 GetMouthPos();
+	
+	//位置情報更新
+	void Update();
+	
+	//位置情報取得
+	Vector2 GetMouthPos();
+
 private:
+	
 	Vector2 mouthPos;
+
 };
 
