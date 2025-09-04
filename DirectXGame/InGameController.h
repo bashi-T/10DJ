@@ -1,4 +1,6 @@
 #pragma once
+#include <KamataEngine.h>
+
 class InGameController {
 public:
 
@@ -10,4 +12,6 @@ public:
 	void Draw();
 
 private:
+
+
 };

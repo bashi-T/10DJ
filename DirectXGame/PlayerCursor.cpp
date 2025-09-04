@@ -27,6 +27,10 @@ void PlayerCursor::Update() {
     mouthTracker_->Update();
 	mouthPos_ = mouthTracker_->GetMouthPos();
 	cursor_->SetPosition(mouthPos_);
+
+
+	//以下ゲーム中のみ
+	if (!inGame_) { return; }
 	Grab();
 
 }

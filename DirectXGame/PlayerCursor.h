@@ -16,11 +16,15 @@ public:
 
 	bool MouthCollsion(const KamataEngine::Vector2& SquarePos, const KamataEngine::Vector2& SquareScale);
 
+	void SetInGameFlag(bool inGame) { isGrab_ = inGame; }
+
 	void SetWadPaper(WadPaper* wadPaper) { wadPaper_ = wadPaper; }
 	void TouchWadPaper(bool touch) { isTouch_ = touch; }
+	
 
 private:
 	void Grab();
+
 
 
 
@@ -32,6 +36,7 @@ private:
 	KamataEngine::Vector2 mouthPos_ {};
 	KamataEngine::Vector2 mouthScale_{};
 
+	bool inGame_ = false;
 	bool isGrab_ = false;
 	bool isTouch_ = false;
 };
