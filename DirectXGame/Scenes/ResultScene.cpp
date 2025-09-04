@@ -2,13 +2,8 @@
 
 using namespace KamataEngine;
 
-ResultScene::ResultScene() {}
-
-ResultScene::~ResultScene() { delete sprite_; }
-
-void ResultScene::Initialize(bool isClear)
+void ResultScene::Initialize()
 {
-	isClear_ = isClear;
 	if (isClear_)
 	{
 		textureHandle_ = TextureManager::Load("tex1.png");
@@ -21,7 +16,7 @@ void ResultScene::Initialize(bool isClear)
 	}
 }
 
-void ResultScene::Update()
+std::unique_ptr<BaseScene> ResultScene::Update()
 {
 
 
@@ -30,6 +25,22 @@ void ResultScene::Update()
 	ImGui::Text("isClear: %s", isClear_ ? "true" : "false");
 	ImGui::End();
 #endif
+
+	if (isTitleScene_ == true)
+	{
+		return std::make_unique<TitleScene>();
+	}
+	else if (isSelectScene_ == true)
+	{
+		return std::make_unique<SelectScene>();
+	}
+	else if (isInGameScene_ == true)
+	{
+		return std::make_unique<InGameScene>();
+	} else
+	{
+		return nullptr;
+	}
 }
 
 void ResultScene::Draw() 

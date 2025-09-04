@@ -12,6 +12,8 @@ GameScene::~GameScene()
 
 void GameScene::Initialize() 
 {
+	sceneManager_ = SceneManager::GetInstance();
+
 	model_ = Model::Create();
 	worldTransform_.Initialize();
 	camera_.Initialize();
@@ -19,14 +21,13 @@ void GameScene::Initialize()
 
 	textureHandle_ = TextureManager::Load("sample.png");
 
-	resultScene_ = new ResultScene;
-	resultScene_->Initialize(true);
+	sceneManager_->Initialize();
 }
 
 void GameScene::Update()
 {
 	debugCamera_->Update();
-	resultScene_->Update();
+	sceneManager_->Update();
 #ifdef _DEBUG
 	ImGui::Begin("DEBUG1");
 	ImGui::Text("DebugText %d,%d,%d", 2025, 12, 31);
@@ -40,5 +41,5 @@ void GameScene::Draw()
 	model_->Draw(worldTransform_, debugCamera_->GetCamera(), textureHandle_);
 	Model::PostDraw();
 
-	resultScene_->Draw();
+	sceneManager_->Draw();
 }

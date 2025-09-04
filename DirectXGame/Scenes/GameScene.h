@@ -1,6 +1,7 @@
 #pragma once
 #include "KamataEngine.h"
-#include "ResultScene.h"
+#include"BaseScene.h"
+#include"SceneManager.h"
 
 class GameScene
 {
@@ -19,7 +20,11 @@ private:
 	KamataEngine::Camera camera_;
 	KamataEngine::DebugCamera* debugCamera_ = nullptr;
 
-	ResultScene* resultScene_;
+	SceneManager* sceneManager_ = nullptr;
+	int32_t currentSceneNo_ = 0;
+	int32_t prevSceneNo_ = 0;
+
+	ResultScene* resultScene_ = nullptr;
 	uint32_t textureHandle_ = 0;
 	int screenWidth = 1280;
 	int screenHeight = 720;
