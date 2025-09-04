@@ -20,29 +20,21 @@ void testDebug::Initialize() {
 	Cursor_ = Sprite::Create(textureHandle_, {mouthTracker_->GetMouthPos().x, mouthTracker_->GetMouthPos().y});
 	Cursor_->SetSize({textureScale_, textureScale_});
 
-	testBox_ = Sprite::Create(textureHandle_, {200, 200});
+	testBox_ = Sprite::Create(textureHandle_, {200-300/2, 200-300/2});
 	testBox_->SetSize({300, 300});
 
-	Cursor_->SetAnchorPoint({0.5f, 0.5f});
-	testBox_->SetAnchorPoint({0.5f, 0.5f});
+	Cursor_->SetAnchorPoint({0.0f, 0.0f});
+	testBox_->SetAnchorPoint({0.0f, 0.0f});
 }
 
 
 void testDebug::Update() {
 	mouthTracker_->Update();
 
-	Cursor_->SetPosition({mouthTracker_->GetMouthPos().x - textureScale_ , mouthTracker_->GetMouthPos().y - textureScale_ });
+	Cursor_->SetPosition({mouthTracker_->GetMouthPos().x - textureScale_/2 , mouthTracker_->GetMouthPos().y - textureScale_/2 });
 
 
-	bool test = isCollision(
-	    {
-	        {Cursor_->GetPosition().x - (Cursor_->GetSize().x/2), Cursor_->GetPosition().y - (Cursor_->GetSize().y/2), 0},
-	        {Cursor_->GetPosition().x + (Cursor_->GetSize().x/2), Cursor_->GetPosition().y + (Cursor_->GetSize().y/2), 0}
-		},
-	    {{testBox_->GetPosition().x - (testBox_->GetSize().x/2), testBox_->GetPosition().y - (testBox_->GetSize().y/2), 0}, 
-			{testBox_->GetPosition().x + (testBox_->GetSize().x/2), testBox_->GetPosition().y + (testBox_->GetSize().y/2), 0}
-		}
-	);
+	bool test = isCollision(Cursor_->GetPosition(), Cursor_->GetSize(), testBox_->GetPosition(), testBox_->GetSize());
 
 	if (test) {
 		Cursor_->SetColor({0, 0, 0, 1});
