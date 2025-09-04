@@ -1,5 +1,7 @@
 #include "Collision.h"
 
+using namespace KamataEngine;
+
 bool isCollision(const AABB& aabb1, const AABB& aabb2)
 {
 	if ((aabb1.min.x <= aabb2.max.x) && (aabb1.max.x >= aabb2.min.x) &&
