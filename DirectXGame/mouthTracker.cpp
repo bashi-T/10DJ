@@ -5,7 +5,7 @@ using namespace KamataEngine;
 
 MouthTracker::MouthTracker()
 {
-	ShowCursor(false);
+
 }
 
 MouthTracker::~MouthTracker()

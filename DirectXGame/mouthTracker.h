@@ -20,10 +20,16 @@ public:
 
 
 
+	static MouthTracker* GetInstance() {
+		static MouthTracker instance;
+		return &instance;
+	}
+
 private:
 	
 	//マウス座標格納用
 	KamataEngine::Vector2 mouthPos_ { };
+
 
 };
 
