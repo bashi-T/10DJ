@@ -10,24 +10,50 @@ testDebug::testDebug() {
 
 testDebug::~testDebug() {
 	delete mouthTracker_;
-	delete sprite_;
+	delete Cursor_;
+	delete testBox_;
 }
 
 void testDebug::Initialize() {
 
-	sprite_ = Sprite::Create(textureHandle_, {mouthTracker_->GetMouthPos().x, mouthTracker_->GetMouthPos().y});
+	textureScale_ = 30.0f;
+	Cursor_ = Sprite::Create(textureHandle_, {mouthTracker_->GetMouthPos().x, mouthTracker_->GetMouthPos().y});
+	Cursor_->SetSize({textureScale_, textureScale_});
+
+	testBox_ = Sprite::Create(textureHandle_, {200, 200});
+	testBox_->SetSize({300, 300});
+
+	Cursor_->SetAnchorPoint({0.5f, 0.5f});
+	testBox_->SetAnchorPoint({0.5f, 0.5f});
 }
 
 
 void testDebug::Update() {
 	mouthTracker_->Update();
 
-	sprite_->SetPosition(mouthTracker_->GetMouthPos());
+	Cursor_->SetPosition({mouthTracker_->GetMouthPos().x - textureScale_ , mouthTracker_->GetMouthPos().y - textureScale_ });
 
+
+	bool test = isCollision(
+	    {
+	        {Cursor_->GetPosition().x - (Cursor_->GetSize().x/2), Cursor_->GetPosition().y - (Cursor_->GetSize().y/2), 0},
+	        {Cursor_->GetPosition().x + (Cursor_->GetSize().x/2), Cursor_->GetPosition().y + (Cursor_->GetSize().y/2), 0}
+		},
+	    {{testBox_->GetPosition().x - (testBox_->GetSize().x/2), testBox_->GetPosition().y - (testBox_->GetSize().y/2), 0}, 
+			{testBox_->GetPosition().x + (testBox_->GetSize().x/2), testBox_->GetPosition().y + (testBox_->GetSize().y/2), 0}
+		}
+	);
+
+	if (test) {
+		Cursor_->SetColor({0, 0, 0, 1});
+	}
+	else {
+		Cursor_->SetColor({1, 1, 1, 1});
+	}
+	
 
 	#ifdef _DEBUG
 	ImGui::Begin("Debug2");
-	//ImGui::SliderFloat("testZ", &testZ_, 0.0f, 300.0f);
 	ImGui::Text("MouthPos %d,%d", (int)mouthTracker_->GetMouthPos().x, (int)mouthTracker_->GetMouthPos().y);
 	ImGui::End();
 	#endif // _DEBUG
@@ -37,6 +63,9 @@ void testDebug::Draw() {
 
 	Sprite::PreDraw();
 
-	sprite_->Draw();
+	testBox_->Draw();
+	Cursor_->Draw();
 
+
+	Sprite::PostDraw();
 }
