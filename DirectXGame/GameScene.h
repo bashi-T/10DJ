@@ -24,4 +24,6 @@ private:
 	uint32_t textureHandle_ = 0;
 	int screenWidth = 1280;
 	int screenHeight = 720;
+
+
 };

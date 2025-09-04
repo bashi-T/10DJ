@@ -19,6 +19,8 @@ public:
 	//位置情報取得
 	Vector2 GetMouthPos();
 
+
+
 private:
 	
 	//マウス座標格納用
