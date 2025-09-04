@@ -1,23 +1,23 @@
-#include "mouthTracker.h"
+#include "MouthTracker.h"
 
 
 using namespace KamataEngine;
 
-mouthTracker::mouthTracker()
+MouthTracker::MouthTracker()
 {
-	//Update();
+	ShowCursor(false);
 }
 
-mouthTracker::~mouthTracker()
+MouthTracker::~MouthTracker()
 {
 }
 
-void mouthTracker::Update()
+void MouthTracker::Update()
 {
 	mouthPos_ = Input::GetInstance()->GetMousePosition();
 }
 
-Vector2 mouthTracker::GetMouthPos()
+Vector2 MouthTracker::GetMouthPos()
 {
 	return mouthPos_; 
 }

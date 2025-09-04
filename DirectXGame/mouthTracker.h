@@ -4,13 +4,13 @@
 
 using namespace KamataEngine;
 
-class mouthTracker
+class MouthTracker
 {
 public:
 
-	mouthTracker();
+	MouthTracker();
 	
-	~mouthTracker();
+	~MouthTracker();
 	
 	//位置情報更新
 	void Update();

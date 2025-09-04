@@ -158,7 +158,8 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Math\CGVector.cpp" />
     <ClCompile Include="Math\Collision.cpp" />
-    <ClCompile Include="mouthTracker.cpp" />
+    <ClCompile Include="MouthTracker.cpp" />
+    <ClCompile Include="PlayerCursor.cpp" />
     <ClCompile Include="testDebug.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -262,7 +263,8 @@
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="Math\CGVector.h" />
     <ClInclude Include="Math\Collision.h" />
-    <ClInclude Include="mouthTracker.h" />
+    <ClInclude Include="MouthTracker.h" />
+    <ClInclude Include="PlayerCursor.h" />
     <ClInclude Include="testDebug.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

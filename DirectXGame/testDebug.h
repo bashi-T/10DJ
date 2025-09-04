@@ -16,7 +16,7 @@ public:
 	void Draw();
 
 private:
-	mouthTracker* mouthTracker_ = nullptr;
+	MouthTracker* mouthTracker_ = nullptr;
 	KamataEngine::Sprite* Cursor_ = nullptr;
 	KamataEngine::Sprite* testBox_ = nullptr;
 	

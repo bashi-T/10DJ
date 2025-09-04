@@ -4,7 +4,7 @@ using namespace KamataEngine;
 
 
 testDebug::testDebug() {
-	mouthTracker_=new mouthTracker();
+	mouthTracker_=new MouthTracker();
 	textureHandle_ = TextureManager::Load("sample.png");
 }
 
