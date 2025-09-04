@@ -30,7 +30,6 @@ void GameScene::Initialize()
 
 void GameScene::Update()
 {
-
 	debugCamera_->Update();
 	testDebug_->Update();
 
@@ -38,14 +37,14 @@ void GameScene::Update()
 	ImGui::Begin("DEBUG1");
 	ImGui::Text("DebugText %d,%d,%d", 2025, 12, 31);
 	ImGui::End();
-	#endif
+#endif
 }
 
 void GameScene::Draw() 
 {
 	Model::PreDraw();
-
 	model_->Draw(worldTransform_, debugCamera_->GetCamera(), textureHandle_);
+	Model::PostDraw();
 
 	Model::PostDraw();
 
