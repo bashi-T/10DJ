@@ -10,6 +10,7 @@ testDebug::testDebug() {
 	mouthTracker_=new MouthTracker();
 	textureHandle_ = TextureManager::Load("sample.png");
 	playerCursor_ = new PlayerCursor();
+
 }
 
 testDebug::~testDebug() {
@@ -19,6 +20,7 @@ testDebug::~testDebug() {
 }
 
 void testDebug::Initialize() {
+	
 
 	textureScale_ = 30.0f;
 	
@@ -28,6 +30,10 @@ void testDebug::Initialize() {
 	testBox_->SetSize({300, 300});
 
 	testBox_->SetAnchorPoint({0.5f, 0.5f});
+	
+	wadPaper_ = new WadPaper(textureHandle_, 15.0f);
+	wadPaper_->Initialize({400, 300}, {0.5f, 0.5f});
+	playerCursor_->SetWadPaper(wadPaper_);
 }
 
 
@@ -35,16 +41,20 @@ void testDebug::Update() {
 	mouthTracker_->Update();
 
 	playerCursor_->Update();
+	wadPaper_->Update();
 
 
-	bool test = playerCursor_->MouthCollsion(testBox_->GetPosition(), testBox_->GetSize());
+	bool test = playerCursor_->MouthCollsion(wadPaper_->GetPosition(), wadPaper_->GetSize());
+	bool test2 = playerCursor_->MouthCollsion(testBox_->GetPosition(), testBox_->GetSize());
 
+	playerCursor_->TouchWadPaper(test);
 	
 
 	#ifdef _DEBUG
 	ImGui::Begin("Debug2");
 	ImGui::Text("MouthPos %d,%d", (int)mouthTracker_->GetMouthPos().x, (int)mouthTracker_->GetMouthPos().y);
 	ImGui::Text("CursorCollision %d", test);
+	ImGui::Text("CursorCollision2 %d", test2);
 	ImGui::End();
 	#endif // _DEBUG
 }
@@ -54,6 +64,7 @@ void testDebug::Draw() {
 	Sprite::PreDraw();
 
 	testBox_->Draw();
+	wadPaper_->Draw();
 	playerCursor_->Draw();
 
 

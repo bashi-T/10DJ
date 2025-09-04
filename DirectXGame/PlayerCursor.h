@@ -2,6 +2,7 @@
 #include<algorithm>
 #include <KamataEngine.h>
 #include "MouthTracker.h"
+#include "WadPaper.h"
 
 class PlayerCursor {
 public:
@@ -12,12 +13,25 @@ public:
 	void Update();
 	void Draw();
 
+
 	bool MouthCollsion(const KamataEngine::Vector2& SquarePos, const KamataEngine::Vector2& SquareScale);
 
+	void SetWadPaper(WadPaper* wadPaper) { wadPaper_ = wadPaper; }
+	void TouchWadPaper(bool touch) { isTouch_ = touch; }
+
 private:
+	void Grab();
+
+
+
 	MouthTracker* mouthTracker_ = nullptr;
 	Sprite* cursor_ = nullptr;
+	WadPaper* wadPaper_ = nullptr;
+
 
 	KamataEngine::Vector2 mouthPos_ {};
 	KamataEngine::Vector2 mouthScale_{};
+
+	bool isGrab_ = false;
+	bool isTouch_ = false;
 };

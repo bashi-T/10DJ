@@ -19,6 +19,7 @@ void PlayerCursor::Initialize(uint32_t TextureHandle,float AnchorPoint,float Sca
 	cursor_ = Sprite::Create(TextureHandle,mouthTracker_->GetMouthPos());
 	cursor_->SetAnchorPoint({AnchorPoint, AnchorPoint});
 	cursor_->SetSize({Scale,Scale});
+	mouthScale_ = {Scale, Scale};
 }
 
 void PlayerCursor::Update() {
@@ -26,6 +27,7 @@ void PlayerCursor::Update() {
     mouthTracker_->Update();
 	mouthPos_ = mouthTracker_->GetMouthPos();
 	cursor_->SetPosition(mouthPos_);
+	Grab();
 
 }
 
@@ -45,4 +47,10 @@ bool PlayerCursor::MouthCollsion(const Vector2& SquarePos, const Vector2& Square
 
 	return false; 
 
+}
+
+void PlayerCursor::Grab() {
+	if (!isTouch_) {	return;}
+	if (!Input::GetInstance()->IsPressMouse(0)) {	return;}
+	wadPaper_->SetPosition(mouthPos_);
 }

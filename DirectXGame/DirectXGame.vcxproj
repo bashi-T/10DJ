@@ -161,6 +161,7 @@
     <ClCompile Include="MouthTracker.cpp" />
     <ClCompile Include="PlayerCursor.cpp" />
     <ClCompile Include="testDebug.cpp" />
+    <ClCompile Include="WadPaper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resources\shaders\TerrainPS.hlsl">
@@ -266,6 +267,7 @@
     <ClInclude Include="MouthTracker.h" />
     <ClInclude Include="PlayerCursor.h" />
     <ClInclude Include="testDebug.h" />
+    <ClInclude Include="WadPaper.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
