@@ -1,4 +1,5 @@
 #include "GameScene.h"
+#include "Math\CGVector.h"
 
 using namespace KamataEngine;
 
@@ -27,6 +28,11 @@ void GameScene::Update()
 
 	debugCamera_->Update();
 	mouthTracker_->Update();
+
+	worldTransform_.translation_.x = mouthTracker_->GetMouthPos().x;
+	worldTransform_.translation_.y = mouthTracker_->GetMouthPos().y;
+	worldTransform_.matWorld_ = MakeAffineMatrix(worldTransform_.scale_, worldTransform_.rotation_, worldTransform_.translation_);
+
 	#ifdef _DEBUG
 	ImGui::Begin("DEBUG1");
 	ImGui::Text("DebugText %d,%d,%d", 2025, 12, 31);

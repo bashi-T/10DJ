@@ -156,6 +156,8 @@
   <ItemGroup>
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Math\CGVector.cpp" />
+    <ClCompile Include="Math\Collision.cpp" />
     <ClCompile Include="mouthTracker.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -257,6 +259,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameScene.h" />
+    <ClInclude Include="Math\CGVector.h" />
+    <ClInclude Include="Math\Collision.h" />
     <ClInclude Include="mouthTracker.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
