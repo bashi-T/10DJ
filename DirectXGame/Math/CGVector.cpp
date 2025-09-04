@@ -1,5 +1,7 @@
 #include "CGVector.h"
 
+using namespace KamataEngine;
+
 Matrix2x2 Add(Matrix2x2 a, Matrix2x2 b)
 {
 	Matrix2x2 add;
@@ -130,7 +132,7 @@ Matrix2x2 Inverse(Matrix2x2 a)
 
 Matrix3x3 Inverse(Matrix3x3 a)
 {
-	Matrix3x3 result;
+	Matrix3x3 result = {};
 	float x = a.m[0][0] * a.m[1][1] * a.m[2][2] + a.m[0][1] * a.m[1][2] * a.m[2][1] + a.m[0][2] * a.m[1][0] * a.m[2][1] - 
 		a.m[2][0] * a.m[1][1] * a.m[2][0] - a.m[0][1] * a.m[2][1] * a.m[2][2] - a.m[0][0] * a.m[1][0] * a.m[2][1];
 	if (x != 0)
@@ -894,7 +896,7 @@ float Norm(const Quaternion& quaternion)
 	return result;
 }
 
-Quaternion Normalize(const Quaternion& quaternion)//正規化・単位Quaternion
+Quaternion Normalize(const Quaternion& quaternion)
 {
 	float norm = Norm(quaternion);
 
