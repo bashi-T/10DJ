@@ -4,7 +4,6 @@
 
 using namespace KamataEngine;
 
-
 class mouthTracker
 {
 public:
@@ -17,14 +16,14 @@ public:
 	void Update();
 
 	//位置情報取得
-	Vector2 GetMouthPos();
+	KamataEngine::Vector2 GetMouthPos();
 
 
 
 private:
 	
 	//マウス座標格納用
-	Vector2 mouthPos_ { };
+	KamataEngine::Vector2 mouthPos_ { };
 
 };
 

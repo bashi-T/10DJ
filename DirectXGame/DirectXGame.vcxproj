@@ -159,6 +159,7 @@
     <ClCompile Include="Math\CGVector.cpp" />
     <ClCompile Include="Math\Collision.cpp" />
     <ClCompile Include="mouthTracker.cpp" />
+    <ClCompile Include="testDebug.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resources\shaders\TerrainPS.hlsl">
@@ -262,6 +263,7 @@
     <ClInclude Include="Math\CGVector.h" />
     <ClInclude Include="Math\Collision.h" />
     <ClInclude Include="mouthTracker.h" />
+    <ClInclude Include="testDebug.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

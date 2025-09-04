@@ -1,6 +1,6 @@
 #pragma once
 #include "KamataEngine.h"
-#include "mouthTracker.h"
+#include "testDebug.h"
 
 class GameScene
 {
@@ -18,12 +18,13 @@ private:
 	KamataEngine::WorldTransform worldTransform_;
 	KamataEngine::Camera camera_;
 	KamataEngine::DebugCamera* debugCamera_ = nullptr;
+	
 
-	mouthTracker* mouthTracker_ = nullptr;
 
 	uint32_t textureHandle_ = 0;
 	int screenWidth = 1280;
 	int screenHeight = 720;
 
+	testDebug* testDebug_ = nullptr;
 
 };

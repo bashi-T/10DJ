@@ -3,7 +3,7 @@
 
 using namespace KamataEngine;
 
-inline static float testZ_ = 0.0f;
+
 
 GameScene::GameScene() {}
 
@@ -11,7 +11,7 @@ GameScene::~GameScene()
 {
 	delete model_;
 	delete debugCamera_;
-	delete mouthTracker_;
+	delete testDebug_;
 }
 
 void GameScene::Initialize() 
@@ -20,31 +20,23 @@ void GameScene::Initialize()
 	worldTransform_.Initialize();
 	camera_.Initialize();
 	debugCamera_ = new DebugCamera(screenWidth,screenHeight);
-	mouthTracker_ = new mouthTracker();
 
 	textureHandle_ = TextureManager::Load("sample.png");
 
+	testDebug_ = new testDebug();
+	testDebug_->Initialize();
 
 }
 
 void GameScene::Update()
 {
 
-	//debugCamera_->Update();
-	mouthTracker_->Update();
-
-	worldTransform_.translation_.x = mouthTracker_->GetMouthPos().x-screenWidth/2;
-	worldTransform_.translation_.y = -mouthTracker_->GetMouthPos().y+screenHeight/2;
-	worldTransform_.translation_.z = testZ_;
-
-
-	worldTransform_.matWorld_ = MakeAffineMatrix(worldTransform_.scale_, worldTransform_.rotation_, worldTransform_.translation_);
-	worldTransform_.TransferMatrix();
+	debugCamera_->Update();
+	testDebug_->Update();
 
 	#ifdef _DEBUG
 	ImGui::Begin("DEBUG1");
 	ImGui::Text("DebugText %d,%d,%d", 2025, 12, 31);
-	ImGui::SliderFloat("testZ", &testZ_, 0.0f, 300.0f);
 	ImGui::End();
 	#endif
 }
@@ -56,4 +48,6 @@ void GameScene::Draw()
 	model_->Draw(worldTransform_, debugCamera_->GetCamera(), textureHandle_);
 
 	Model::PostDraw();
+
+	testDebug_->Draw();
 }
