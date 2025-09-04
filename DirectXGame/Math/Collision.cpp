@@ -4,11 +4,8 @@ using namespace KamataEngine;
 
 bool isCollision(const KamataEngine::Vector2& square1, const KamataEngine::Vector2& square1Length, const KamataEngine::Vector2& square2, const KamataEngine::Vector2& square2Length)
 {
-	Vector2 origin1 = {square1.x + square1Length.x / 2, square1.y + square1Length.y / 2};
-	Vector2 origin2 = {square2.x + square2Length.x / 2, square2.y + square2Length.y / 2};
-
-	if (sqrt((origin2.x - origin1.x) * (origin2.x - origin1.x)) <= square1Length.x / 2 + square2Length.x / 2 &&
-	    sqrt((origin2.y - origin1.y) * (origin2.y - origin1.y)) <= square1Length.y / 2 + square2Length.y / 2)
+	if (sqrt((square2.x - square1.x) * (square2.x - square1.x)) <= square1Length.x / 2 + square2Length.x / 2 &&
+	    sqrt((square2.y - square1.y) * (square2.y - square1.y)) <= square1Length.y / 2 + square2Length.y / 2)
 	{
 		return true;
 	}
@@ -24,7 +21,8 @@ bool isCollision(const AABB& aabb1, const AABB& aabb2) {
 		(aabb1.min.z <= aabb2.max.z) && (aabb1.max.z >= aabb2.min.z)) {
 		return true;
 	}
-	else {
+	else 
+	{
 		return false;
 	}
 }
