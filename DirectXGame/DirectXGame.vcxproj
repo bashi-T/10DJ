@@ -155,6 +155,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="InGameController.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Math\CGVector.cpp" />
     <ClCompile Include="Math\Collision.cpp" />
@@ -262,6 +263,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameScene.h" />
+    <ClInclude Include="InGameController.h" />
     <ClInclude Include="Math\CGVector.h" />
     <ClInclude Include="Math\Collision.h" />
     <ClInclude Include="MouthTracker.h" />
