@@ -14,6 +14,8 @@
 //
 //}
 
+bool isCollision(const KamataEngine::Vector2& square1, const KamataEngine::Vector2& square1Length, const KamataEngine::Vector2& square2, const KamataEngine::Vector2& square2Length);
+
 bool isCollision(const AABB& aabb1, const AABB& aabb2);
 
 bool isCollision(const AABB& aabb, const Sphere& sphere);

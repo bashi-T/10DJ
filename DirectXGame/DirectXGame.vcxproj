@@ -158,6 +158,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Math\CGVector.cpp" />
     <ClCompile Include="Math\Collision.cpp" />
+    <ClCompile Include="ResultScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resources\shaders\TerrainPS.hlsl">
@@ -260,6 +261,7 @@
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="Math\CGVector.h" />
     <ClInclude Include="Math\Collision.h" />
+    <ClInclude Include="ResultScene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
