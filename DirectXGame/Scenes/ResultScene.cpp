@@ -6,14 +6,21 @@ void ResultScene::Initialize()
 {
 	if (isClear_)
 	{
-		textureHandle_ = TextureManager::Load("tex1.png");
-		sprite_ = Sprite::Create(textureHandle_, {100, 50});
+		textureHandleResult_ = TextureManager::Load("tex1.png");
+		result = Sprite::Create(textureHandleResult_, {100, 50}, {1, 1, 1, 1}, {0.5,0.5});
 	}
 	else
 	{
-		textureHandle_ = TextureManager::Load("uvChecker.png");
-		sprite_ = Sprite::Create(textureHandle_, {100, 50});
+		textureHandleResult_ = TextureManager::Load("uvChecker.png");
+		result = Sprite::Create(textureHandleResult_, { 100, 50 }, {1, 1, 1, 1}, {0.5, 0.5});
 	}
+
+	textureHandleTitle_ = TextureManager::Load("title.png");
+	title = Sprite::Create(textureHandleTitle_, { 400, 250 }, {1, 1, 1, 1}, {0.5, 0.5});
+	textureHandleSelect_ = TextureManager::Load("select.png");
+	select = Sprite::Create(textureHandleSelect_, { 400, 400 }, {1, 1, 1, 1}, {0.5, 0.5});
+	textureHandleRetry_ = TextureManager::Load("retry.png");
+	retry = Sprite::Create(textureHandleRetry_, { 400, 550 }, {1, 1, 1, 1}, {0.5, 0.5});
 }
 
 std::unique_ptr<BaseScene> ResultScene::Update()
@@ -37,7 +44,8 @@ std::unique_ptr<BaseScene> ResultScene::Update()
 	else if (isInGameScene_ == true)
 	{
 		return std::make_unique<InGameScene>();
-	} else
+	}
+	else
 	{
 		return nullptr;
 	}
@@ -46,6 +54,9 @@ std::unique_ptr<BaseScene> ResultScene::Update()
 void ResultScene::Draw() 
 { 
 	Sprite::PreDraw();
-	sprite_->Draw();
+	result->Draw();
+	title->Draw();
+	select->Draw();
+	retry->Draw();
 	Sprite::PostDraw();
 }

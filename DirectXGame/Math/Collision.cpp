@@ -81,6 +81,20 @@ bool isCollision(const OBB& obb, const Sphere& sphere)
 	return isCollision(aabbOBBLocal, sphereOBBLocal);
 }
 
+bool isCollision(const KamataEngine::Vector2& square, const KamataEngine::Vector2& squareLength, const KamataEngine::Vector2& ChipPosition)
+{
+	Vector2 MapChipOrigin = {ChipPosition.x * chipSize + chipSize / 2, ChipPosition.y * chipSize + chipSize / 2};
+	if (sqrt((MapChipOrigin.x - square.x) * (MapChipOrigin.x - square.x)) <= squareLength.x / 2 + chipSize / 2 &&
+	    sqrt((MapChipOrigin.y - square.y) * (MapChipOrigin.y - square.y)) <= squareLength.y / 2 + chipSize / 2)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 bool isCollision(const Sphere& sphere1, const Sphere& sphere2)
 {
 	float distance = Length(Subtract(sphere2.center, sphere1.center));

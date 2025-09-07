@@ -271,6 +271,7 @@
     <ClInclude Include="Scenes\ResultScene.h" />
     <ClInclude Include="Scenes\TitleScene.h" />
     <ClInclude Include="Scenes\SelectScene.h" />
+    <ClInclude Include="Math\StageMapChip.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

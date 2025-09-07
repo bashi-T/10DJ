@@ -16,11 +16,18 @@ public:
 	void Draw();
 
 private:
-	KamataEngine::Sprite* sprite_ = nullptr;
+	KamataEngine::Sprite* result = nullptr;
+	KamataEngine::Sprite* title = nullptr;
+	KamataEngine::Sprite* select = nullptr;
+	KamataEngine::Sprite* retry = nullptr;
+
+	uint32_t textureHandleResult_ = 0;
+	uint32_t textureHandleTitle_ = 0;
+	uint32_t textureHandleSelect_ = 0;
+	uint32_t textureHandleRetry_ = 0;
+
 	bool isClear_ = false;
 	bool isTitleScene_ = false;
 	bool isSelectScene_ = false;
 	bool isInGameScene_ = false;
-
-	uint32_t textureHandle_ = 0;
 };

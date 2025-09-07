@@ -1,6 +1,7 @@
 #pragma once
 #include<algorithm>
 #include "CGvector.h"
+#include "StageMapChip.h"
 
 //bool IsCollision(const Segment&segment,const Plane&plane)
 //{
@@ -22,6 +23,8 @@ bool isCollision(const AABB& aabb1, const AABB& aabb2);
 bool isCollision(const AABB& aabb, const Sphere& sphere);
 
 bool isCollision(const OBB& obb, const Sphere& sphere);
+
+bool isCollision(const KamataEngine::Vector2& square, const KamataEngine::Vector2& squareLength, const KamataEngine::Vector2&ChipPosition);
 
 //bool isCollision(const OBB& obb1, const OBB& obb2)
 //{
