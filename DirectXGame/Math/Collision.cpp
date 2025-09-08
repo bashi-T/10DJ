@@ -95,6 +95,23 @@ bool isCollision(const KamataEngine::Vector2& square, const KamataEngine::Vector
 	}
 }
 
+bool isCollisionToMouse(const KamataEngine::Vector2& mouseSquareLength, const KamataEngine::Vector2& spriteSquare, const KamataEngine::Vector2& spriteSquareLength)
+{
+	POINT pos;
+	GetCursorPos(&pos);
+	Vector2 mousePos = {(float)pos.x, (float)pos.y};
+
+	if (sqrt((mousePos.x - spriteSquare.x) * (mousePos.x - spriteSquare.x)) <= mouseSquareLength.x / 2 + spriteSquareLength.x / 2 &&
+	    sqrt((mousePos.y - spriteSquare.y) * (mousePos.y - spriteSquare.y)) <= mouseSquareLength.y / 2 + spriteSquareLength.y / 2)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 bool isCollision(const Sphere& sphere1, const Sphere& sphere2)
 {
 	float distance = Length(Subtract(sphere2.center, sphere1.center));

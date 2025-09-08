@@ -6,21 +6,21 @@ void ResultScene::Initialize()
 {
 	if (isClear_)
 	{
-		textureHandleResult_ = TextureManager::Load("tex1.png");
-		result = Sprite::Create(textureHandleResult_, {100, 50}, {1, 1, 1, 1}, {0.5,0.5});
+		textureHandleResult_ = TextureManager::Load("result.png");
+		result = Sprite::Create(textureHandleResult_, {600, 50}, {1, 1, 1, 1}, {0.5,0.5});
 	}
 	else
 	{
-		textureHandleResult_ = TextureManager::Load("uvChecker.png");
-		result = Sprite::Create(textureHandleResult_, { 100, 50 }, {1, 1, 1, 1}, {0.5, 0.5});
+		textureHandleResult_ = TextureManager::Load("result.png");
+		result = Sprite::Create(textureHandleResult_, { 600, 50 }, {1, 1, 1, 1}, {0.5, 0.5});
 	}
 
 	textureHandleTitle_ = TextureManager::Load("title.png");
-	title = Sprite::Create(textureHandleTitle_, { 400, 250 }, {1, 1, 1, 1}, {0.5, 0.5});
+	title = Sprite::Create(textureHandleTitle_, posTitle_, {1, 1, 1, 1}, {0.5, 0.5});
 	textureHandleSelect_ = TextureManager::Load("select.png");
-	select = Sprite::Create(textureHandleSelect_, { 400, 400 }, {1, 1, 1, 1}, {0.5, 0.5});
+	select = Sprite::Create(textureHandleSelect_, posSelect_, {1, 1, 1, 1}, {0.5, 0.5});
 	textureHandleRetry_ = TextureManager::Load("retry.png");
-	retry = Sprite::Create(textureHandleRetry_, { 400, 550 }, {1, 1, 1, 1}, {0.5, 0.5});
+	retry = Sprite::Create(textureHandleRetry_, posRetry_, {1, 1, 1, 1}, {0.5, 0.5});
 }
 
 std::unique_ptr<BaseScene> ResultScene::Update()
@@ -32,6 +32,21 @@ std::unique_ptr<BaseScene> ResultScene::Update()
 	ImGui::Text("isClear: %s", isClear_ ? "true" : "false");
 	ImGui::End();
 #endif
+	if (Input::GetInstance()->IsTriggerMouse(0))
+	{
+		if (isCollisionToMouse({ 5, 5 }, posTitle_, { 128,128 }))
+		{
+			isTitleScene_ = true;
+		}
+		else if (isCollisionToMouse({ 5, 5 }, posSelect_, { 128, 128 }))
+		{
+			isSelectScene_ = true;
+		}
+		else if (isCollisionToMouse({ 5, 5 }, posRetry_, { 128, 128 }))
+		{
+			isInGameScene_ = true;
+		}
+	}
 
 	if (isTitleScene_ == true)
 	{

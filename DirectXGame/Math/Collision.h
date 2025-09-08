@@ -2,6 +2,8 @@
 #include<algorithm>
 #include "CGvector.h"
 #include "StageMapChip.h"
+#include <windows.h>
+#include <iostream>
 
 //bool IsCollision(const Segment&segment,const Plane&plane)
 //{
@@ -24,7 +26,9 @@ bool isCollision(const AABB& aabb, const Sphere& sphere);
 
 bool isCollision(const OBB& obb, const Sphere& sphere);
 
-bool isCollision(const KamataEngine::Vector2& square, const KamataEngine::Vector2& squareLength, const KamataEngine::Vector2&ChipPosition);
+bool isCollision(const KamataEngine::Vector2& square, const KamataEngine::Vector2& squareLength, const KamataEngine::Vector2& ChipPosition);
+
+bool isCollisionToMouse(const KamataEngine::Vector2& mouseSquareLength, const KamataEngine::Vector2& spriteSquare, const KamataEngine::Vector2& spriteSquareLength);
 
 //bool isCollision(const OBB& obb1, const OBB& obb2)
 //{

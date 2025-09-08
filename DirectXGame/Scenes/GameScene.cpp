@@ -28,9 +28,14 @@ void GameScene::Update()
 {
 	debugCamera_->Update();
 	sceneManager_->Update();
+
+	POINT pos;
+	GetCursorPos(&pos);
+	Vector2 mousePos = {(float)pos.x, (float)pos.y};
+
 #ifdef _DEBUG
 	ImGui::Begin("DEBUG1");
-	ImGui::Text("DebugText %d,%d,%d", 2025, 12, 31);
+	ImGui::Text("mousePos %f,%f", mousePos.x, mousePos.y);
 	ImGui::End();
 #endif
 }
