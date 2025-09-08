@@ -133,6 +133,14 @@ public: // メンバ関数
 
 	const Vector2& GetSize() const { return size_; }
 
+	  /// <summary>
+    /// スケールの設定
+    /// </summary>
+    /// <param name="scale">スケール</param>
+     void SetScale(const Vector2& scale) { scale_ = scale; }
+
+    const Vector2& GetScale() const { return scale_; }
+
 	/// <summary>
 	/// アンカーポイントの設定
 	/// </summary>
@@ -196,6 +204,8 @@ private: // メンバ変数
 	Vector2 position_{};
 	// スプライト幅、高さ
 	Vector2 size_ = {100.0f, 100.0f};
+	// スケール
+	Vector2 scale_ = {1.0f, 1.0f}; 
 	// アンカーポイント
 	Vector2 anchorPoint_ = {0, 0};
 	// ワールド行列
