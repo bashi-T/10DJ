@@ -8,8 +8,8 @@ public:
 	void Initialize();
 	void Update();
 	void Draw();
-	KamataEngine::Vector2 GetPosition() const { return position_; }
-	KamataEngine::Vector2 GetSize() const { return size_; }
+	//KamataEngine::Vector2 GetPosition() const { return position_; }
+	//KamataEngine::Vector2 GetSize() const { return size_; }
 private:
 };
 
