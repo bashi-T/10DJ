@@ -7,6 +7,7 @@
 #include "TextureLoader.h"
 #include "TrashCan.h"
 #include "Block.h"
+#include "AudioLoader.h"
 
 class InGameController {
 public:
@@ -32,6 +33,7 @@ private:
 	PlayerCursor* playerCursor_ = nullptr;
 	WadPaper* wadPaper_ = nullptr;
 	TextureLoader* textureLoader_ = nullptr;
+	AudioLoader* audioLoader_ = nullptr;
 	TrashCan* trashCan_ = nullptr;
 	KamataEngine::Vector2 initialPaperPos_{};
 	KamataEngine::Vector2 screenSize_{};

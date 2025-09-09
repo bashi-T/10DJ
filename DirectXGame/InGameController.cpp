@@ -10,6 +10,7 @@ InGameController::InGameController(const Vector2 screenSize) {
 	screenEdgeOffset_ = 200.0f;
 	mouthTracker_ = new MouthTracker();
 	textureLoader_ = new TextureLoader();
+	audioLoader_ = new AudioLoader();
 	playerCursor_ = new PlayerCursor();
 	trashCan_ = new TrashCan(textureLoader_->GetTrashCanTexture());
 	wadPaper_ = new WadPaper(textureLoader_->GetWadPaperTexture(), 15.0f);
@@ -20,6 +21,7 @@ InGameController::~InGameController() {
 	delete playerCursor_;
 	delete textureLoader_;
 	delete trashCan_;
+	delete audioLoader_;
 }
 
 
@@ -36,7 +38,7 @@ void InGameController::Initialize() {
 	initialPaperPos_ = { 400, 300 };
 	wadPaper_->~WadPaper();
 	wadPaper_->Initialize(initialPaperPos_,*playerCursor_);
-
+	
 	trashCan_->Initialize();
 }
 
@@ -57,15 +59,20 @@ void InGameController::Update() {
 		clearFlag_ = trashCan_->ClearFlag(wadPaper_->GetPosition(), wadPaper_->GetSize());
 	}
 
-	IsClear();
-	RespornWadPaper();
-
 #ifdef _DEBUG
 	ImGui::Begin("Debug2");
 	ImGui::Text("clearFlag %d", (int)clearFlag_);
 	ImGui::Text("life %d", (int)life_);
 	ImGui::End();
 #endif // _DEBUG
+
+	if (gameEndFlag_) {
+		return;
+	}
+	IsClear();
+	RespornWadPaper();
+
+
 }
 
 
@@ -86,9 +93,7 @@ void InGameController::Draw() {
 
 void InGameController::RespornWadPaper()
 {
-	if(wadPaper_ == nullptr) {
-		return;
-	}
+
 	ScreenOutSide();
 	if (wadPaper_->GetIsLife()) {
 		return;
@@ -96,6 +101,7 @@ void InGameController::RespornWadPaper()
 	wadPaper_->~WadPaper();
 	wadPaper_->Initialize(initialPaperPos_,*playerCursor_);
 	trashCan_->ResetClearFlag();
+	Audio::GetInstance()->PlayWave(audioLoader_->GetPaperBrake_());
 
 	GameOver();
 }
@@ -104,8 +110,8 @@ void InGameController::IsClear()
 {
 	if (clearFlag_)
 	{
-		//wadPaper_ ->~WadPaper();
 		gameEndFlag_ = true;
+		Audio::GetInstance()->PlayWave(audioLoader_->GetFanfare());
 	}
 }
 
