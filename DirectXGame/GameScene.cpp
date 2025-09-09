@@ -30,7 +30,6 @@ void GameScene::Initialize()
 
 void GameScene::Update()
 {
-
 	
 	if (Input::GetInstance()->TriggerKey(DIK_0)) {
 		inGameController_->Initialize();

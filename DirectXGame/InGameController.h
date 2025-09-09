@@ -6,6 +6,7 @@
 #include "WadPaper.h"
 #include "TextureLoader.h"
 #include "TrashCan.h"
+#include "Block.h"
 
 class InGameController {
 public:

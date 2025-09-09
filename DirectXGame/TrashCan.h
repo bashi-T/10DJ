@@ -11,7 +11,7 @@ public:
 	void Draw();
 
 	KamataEngine::Vector2 GetPosition() const { return position_; }
-	KamataEngine::Vector2 GetSize() const { return size_; }
+	float GetSize() const { return size_; }
 
 	bool ClearFlag(const KamataEngine::Vector2& squarePos, const KamataEngine::Vector2& squareScale);
 	void ResetClearFlag();
@@ -22,7 +22,7 @@ private:
 
 	KamataEngine::Sprite* trashCan_ = nullptr;
 	KamataEngine::Vector2 position_{  };
-	KamataEngine::Vector2 size_{  };
+	float size_ = 0;
 
 	uint32_t textureHandle_ = 0;
 	float trashCanSize_ = 100.0f;
