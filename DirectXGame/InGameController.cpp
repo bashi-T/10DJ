@@ -5,6 +5,9 @@ using namespace KamataEngine;
 
 
 InGameController::InGameController(const Vector2 screenSize) {
+
+	initialPaperPos_ = { 400, 300 };
+
 	ShowCursor(false);
 	screenSize_ = screenSize;
 	screenEdgeOffset_ = 200.0f;
@@ -14,6 +17,7 @@ InGameController::InGameController(const Vector2 screenSize) {
 	playerCursor_ = new PlayerCursor();
 	trashCan_ = new TrashCan(textureLoader_->GetTrashCanTexture());
 	wadPaper_ = new WadPaper(textureLoader_->GetWadPaperTexture(), 15.0f);
+	grabArea_ = new GrabArea(textureLoader_->GetGrabAreaTexture(), initialPaperPos_, { 400,400 });
 }
 
 InGameController::~InGameController() {
@@ -22,6 +26,7 @@ InGameController::~InGameController() {
 	delete textureLoader_;
 	delete trashCan_;
 	delete audioLoader_;
+	delete grabArea_;
 }
 
 
@@ -31,15 +36,17 @@ void InGameController::Initialize() {
 	clearFlag_ = false;
 	gameOverFlag_ = false;
 	gameEndFlag_ = false;
+	isCanGrab_ = false;
 	life_ = 3;
 	textureScale_ = 30.0f;
 	playerCursor_->Initialize(textureLoader_->GetPlayerTexture(), 0.5f, textureScale_);
 
-	initialPaperPos_ = { 400, 300 };
+
 	wadPaper_->~WadPaper();
 	wadPaper_->Initialize(initialPaperPos_,*playerCursor_);
 	
 	trashCan_->Initialize();
+	grabArea_->Initialize();
 }
 
 
@@ -48,16 +55,29 @@ void InGameController::Update() {
 	playerCursor_->Update();
 	if (!gameEndFlag_)
 	{ 
-		wadPaper_->Update(); 
+		wadPaper_->Update(isCanGrab_); 
 	}
 
 	trashCan_->Update();
+	grabArea_->Update();
+
 
 	if (!gameEndFlag_)
 	{
-		wadPaper_->Collision(playerCursor_->GetPosition(), playerCursor_->GetSize());
+		bool grabBuff= wadPaper_->Collision(playerCursor_->GetPosition(), playerCursor_->GetSize());
+		bool grabBuff2 = grabArea_->Collision(playerCursor_->GetPosition(), playerCursor_->GetSize());
 		clearFlag_ = trashCan_->ClearFlag(wadPaper_->GetPosition(), wadPaper_->GetSize());
+
+		if (Input::GetInstance()->IsPressMouse(0) && grabBuff && grabBuff2)
+		{
+			isCanGrab_ = true;
+		}
+		else 
+		{
+			isCanGrab_ = false;
+		}
 	}
+
 
 #ifdef _DEBUG
 	ImGui::Begin("Debug2");
@@ -72,13 +92,13 @@ void InGameController::Update() {
 	IsClear();
 	RespornWadPaper();
 
-
 }
 
 
 void InGameController::Draw() {
 	Sprite::PreDraw();
 
+	grabArea_->Draw();
 	if (!gameEndFlag_) 
 	{ 
 		wadPaper_->Draw();

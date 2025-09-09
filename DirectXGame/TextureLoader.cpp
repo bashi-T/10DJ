@@ -8,4 +8,5 @@ TextureLoader::TextureLoader()
 	wadPaperTextureHandle_ = TextureManager::Load("wadPaper.png");
 	trashCanTextureHandle_ = TextureManager::Load("trashCan.png");
 	blockTextureHandle_ = TextureManager::Load("block.png");
+	grabAreaTextureHandle_ = TextureManager::Load("tex1.png");
 }

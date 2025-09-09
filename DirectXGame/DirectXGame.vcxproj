@@ -157,6 +157,7 @@
     <ClCompile Include="AudioLoader.cpp" />
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="GrabArea.cpp" />
     <ClCompile Include="InGameController.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Math\CGVector.cpp" />
@@ -270,6 +271,7 @@
     <ClInclude Include="AudioLoader.h" />
     <ClInclude Include="Block.h" />
     <ClInclude Include="GameScene.h" />
+    <ClInclude Include="GrabArea.h" />
     <ClInclude Include="InGameController.h" />
     <ClInclude Include="Math\CGVector.h" />
     <ClInclude Include="Math\Collision.h" />

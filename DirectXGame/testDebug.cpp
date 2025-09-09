@@ -41,7 +41,7 @@ void testDebug::Update() {
 	mouthTracker_->Update();
 
 	playerCursor_->Update();
-	wadPaper_->Update();
+	//wadPaper_->Update();
 
 
 	bool test = playerCursor_->MouthCollsion(wadPaper_->GetPosition(), wadPaper_->GetSize());

@@ -26,11 +26,11 @@ void WadPaper::Initialize(const Vector2 position,const PlayerCursor& playerCurso
 	isLife_ = true;
 }
 
-void WadPaper::Update() {
+void WadPaper::Update(bool isGrab) {
 	
 	if (isTouching_) 
 	{
-		if (Input::GetInstance()->IsPressMouse(0)) 
+		if (isGrab) 
 		{
 			wadPaper_->SetPosition(playerCursor_->GetPosition());
 			CalculationForce();
@@ -74,14 +74,15 @@ void WadPaper::Draw() {
 	wadPaper_->Draw();
 }
 
-void WadPaper::Collision(const KamataEngine::Vector2& squarePos,const KamataEngine::Vector2& squareScale)
+bool WadPaper::Collision(const KamataEngine::Vector2& squarePos,const KamataEngine::Vector2& squareScale)
 {
 	if (isCollision(wadPaper_->GetPosition(), {paperSize_,paperSize_}, squarePos, squareScale)) 
 	{
 		isTouching_ = true;
-		return;
+		return true;
 	}
 	isTouching_ = false;
+	return false;
 }
 
 void WadPaper::CountDownLifeTime()

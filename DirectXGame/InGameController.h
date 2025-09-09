@@ -8,6 +8,7 @@
 #include "TrashCan.h"
 #include "Block.h"
 #include "AudioLoader.h"
+#include "GrabArea.h"
 
 class InGameController {
 public:
@@ -38,6 +39,7 @@ private:
 	KamataEngine::Vector2 initialPaperPos_{};
 	KamataEngine::Vector2 screenSize_{};
 	float screenEdgeOffset_ = 0.0f;
+	GrabArea* grabArea_ = nullptr;
 
 	float textureScale_ = 50;
 	bool inGame_ = true;
@@ -45,4 +47,5 @@ private:
 	bool gameOverFlag_ = false;
 	bool gameEndFlag_ = false;
 	int life_ = 3;
+	bool isCanGrab_ = false;
 };

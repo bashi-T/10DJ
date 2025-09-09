@@ -8,12 +8,12 @@ public:
 	~WadPaper();
 
 	void Initialize(const KamataEngine::Vector2 position,const PlayerCursor& playerCursor);
-	void Update();
+	void Update(bool isGrab);
 	void Draw();
 
 	void SetPosition(const KamataEngine::Vector2 position) { wadPaper_->SetPosition(position); }
 
-	void Collision(const KamataEngine::Vector2& squarePos,const KamataEngine::Vector2& squareScale);
+	bool Collision(const KamataEngine::Vector2& squarePos,const KamataEngine::Vector2& squareScale);
 
 
 	KamataEngine::Vector2 GetPosition() const { return wadPaper_->GetPosition(); }
