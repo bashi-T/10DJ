@@ -4,6 +4,7 @@
 #include "Math\Collision.h"
 #include "PlayerCursor.h"
 #include "WadPaper.h"
+#include "TextureLoader.h"
 
 class InGameController {
 public:
@@ -20,7 +21,7 @@ private:
 	KamataEngine::Sprite* testBox_ = nullptr;
 	PlayerCursor* playerCursor_ = nullptr;
 	WadPaper* wadPaper_ = nullptr;
+	TextureLoader* textureLoader_ = nullptr;
 
-	uint32_t textureHandle_ = 0;
 	float textureScale_ = 50;
 };

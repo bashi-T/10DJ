@@ -162,6 +162,7 @@
     <ClCompile Include="MouthTracker.cpp" />
     <ClCompile Include="PlayerCursor.cpp" />
     <ClCompile Include="testDebug.cpp" />
+    <ClCompile Include="TextureLoader.cpp" />
     <ClCompile Include="TrashCan.cpp" />
     <ClCompile Include="WadPaper.cpp" />
   </ItemGroup>
@@ -270,6 +271,7 @@
     <ClInclude Include="MouthTracker.h" />
     <ClInclude Include="PlayerCursor.h" />
     <ClInclude Include="testDebug.h" />
+    <ClInclude Include="TextureLoader.h" />
     <ClInclude Include="TrashCan.h" />
     <ClInclude Include="WadPaper.h" />
   </ItemGroup>

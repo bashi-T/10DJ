@@ -11,16 +11,20 @@ TrashCan::TrashCan(uint32_t textureHandle)
 
 TrashCan::~TrashCan()
 {
+	delete trashCan_;
 }
 
 void TrashCan::Initialize()
 {
+
 }
 
 void TrashCan::Update()
 {
+
 }
 
 void TrashCan::Draw()
 {
+	trashCan_->Draw();
 }

@@ -7,7 +7,7 @@ InGameController::InGameController() {
 	ShowCursor(false);
 
 	mouthTracker_ = new MouthTracker();
-	textureHandle_ = TextureManager::Load("sample.png");
+	textureLoader_ = new TextureLoader();
 	playerCursor_ = new PlayerCursor();
 
 }
@@ -16,6 +16,7 @@ InGameController::~InGameController() {
 	delete mouthTracker_;
 	delete testBox_;
 	delete playerCursor_;
+	delete textureLoader_;
 }
 
 
@@ -25,14 +26,14 @@ void InGameController::Initialize() {
 
 	textureScale_ = 30.0f;
 
-	playerCursor_->Initialize(textureHandle_, 0.5f, textureScale_);
+	playerCursor_->Initialize(textureLoader_->GetPlayerTexture(), 0.5f, textureScale_);
 
-	testBox_ = Sprite::Create(textureHandle_, { 200, 200 });
+	testBox_ = Sprite::Create(textureLoader_->GetBrockTexture(), {200, 200});
 	testBox_->SetSize({ 300, 300 });
 
 	testBox_->SetAnchorPoint({ 0.5f, 0.5f });
 
-	wadPaper_ = new WadPaper(textureHandle_, 15.0f);
+	wadPaper_ = new WadPaper(textureLoader_->GetWadPaperTexture(), 15.0f);
 	wadPaper_->Initialize({ 400, 300 }, { 0.5f, 0.5f });
 	playerCursor_->SetWadPaper(wadPaper_);
 }
