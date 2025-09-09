@@ -17,6 +17,7 @@ void TrashCan::Initialize()
 	trashCan_ = KamataEngine::Sprite::Create(textureHandle_, { 800, 600 });
 	trashCan_->SetSize({ trashCanSize_, trashCanSize_ });
 	trashCan_->SetAnchorPoint({ 0.5f, 0.5f });
+	clearFlag_ = false;
 }
 
 void TrashCan::Update()

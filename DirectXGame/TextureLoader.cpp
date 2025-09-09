@@ -6,6 +6,6 @@ TextureLoader::TextureLoader()
 {
 	playerTextureHandle_ = TextureManager::Load("hand_1.png");
 	wadPaperTextureHandle_ = TextureManager::Load("wadPaper.png");
-	trashCanTextureHandle_ = TextureManager::Load("tex1.png");
+	trashCanTextureHandle_ = TextureManager::Load("trashCan.png");
 	brockTextureHandle_ = TextureManager::Load("sample.png");
 }

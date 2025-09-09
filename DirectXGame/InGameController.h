@@ -40,5 +40,6 @@ private:
 	bool inGame_ = true;
 	bool clearFlag_ = false;
 	bool gameOverFlag_ = false;
+	bool gameEndFlag_ = false;
 	int life_ = 3;
 };

@@ -27,15 +27,14 @@ InGameController::~InGameController() {
 void InGameController::Initialize() {
 
 	clearFlag_ = false;
+	gameOverFlag_ = false;
+	gameEndFlag_ = false;
 	life_ = 3;
-
 	textureScale_ = 30.0f;
-
 	playerCursor_->Initialize(textureLoader_->GetPlayerTexture(), 0.5f, textureScale_);
 
-
-
 	initialPaperPos_ = { 400, 300 };
+	wadPaper_->~WadPaper();
 	wadPaper_->Initialize(initialPaperPos_,*playerCursor_);
 
 	trashCan_->Initialize();
@@ -45,14 +44,14 @@ void InGameController::Initialize() {
 void InGameController::Update() {
 
 	playerCursor_->Update();
-	if (wadPaper_ != nullptr)
+	if (!gameEndFlag_)
 	{ 
 		wadPaper_->Update(); 
 	}
 
 	trashCan_->Update();
 
-	if (wadPaper_ != nullptr)
+	if (!gameEndFlag_)
 	{
 		wadPaper_->Collision(playerCursor_->GetPosition(), playerCursor_->GetSize());
 		clearFlag_ = trashCan_->ClearFlag(wadPaper_->GetPosition(), wadPaper_->GetSize());
@@ -73,7 +72,7 @@ void InGameController::Update() {
 void InGameController::Draw() {
 	Sprite::PreDraw();
 
-	if (wadPaper_ != nullptr) 
+	if (!gameEndFlag_) 
 	{ 
 		wadPaper_->Draw();
 	}
@@ -105,7 +104,8 @@ void InGameController::IsClear()
 {
 	if (clearFlag_)
 	{
-		wadPaper_ = nullptr;
+		//wadPaper_ ->~WadPaper();
+		gameEndFlag_ = true;
 	}
 }
 
@@ -138,7 +138,8 @@ void InGameController::GameOver()
 	life_--;
 	if (life_ <= 0) {
 		gameOverFlag_ = true;
-		wadPaper_ = nullptr;
+		gameEndFlag_ = true;
+		//wadPaper_->~WadPaper();
 		
 	}
 

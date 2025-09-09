@@ -70,6 +70,7 @@ void WadPaper::Update() {
 }
 
 void WadPaper::Draw() {
+
 	wadPaper_->Draw();
 }
 
