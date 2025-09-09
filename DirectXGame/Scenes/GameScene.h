@@ -19,6 +19,7 @@ private:
 	KamataEngine::WorldTransform worldTransform_;
 	KamataEngine::Camera camera_;
 	KamataEngine::DebugCamera* debugCamera_ = nullptr;
+	KamataEngine::Sprite* sprite_ = nullptr;
 
 	SceneManager* sceneManager_ = nullptr;
 	int32_t currentSceneNo_ = 0;
@@ -26,6 +27,5 @@ private:
 
 	ResultScene* resultScene_ = nullptr;
 	uint32_t textureHandle_ = 0;
-	int screenWidth = 1280;
-	int screenHeight = 720;
+	uint32_t textureHandleSprite_ = 0;
 };
