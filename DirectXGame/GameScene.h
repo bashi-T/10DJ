@@ -1,6 +1,6 @@
 #pragma once
 #include "KamataEngine.h"
-#include "testDebug.h"
+#include "InGameController.h"
 
 class GameScene
 {
@@ -25,6 +25,6 @@ private:
 	int screenWidth = 1280;
 	int screenHeight = 720;
 
-	testDebug* testDebug_ = nullptr;
+	InGameController*  inGameController_ = nullptr;
 
 };

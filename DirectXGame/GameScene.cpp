@@ -11,7 +11,7 @@ GameScene::~GameScene()
 {
 	delete model_;
 	delete debugCamera_;
-	delete testDebug_;
+	delete inGameController_;
 }
 
 void GameScene::Initialize() 
@@ -23,15 +23,15 @@ void GameScene::Initialize()
 
 	textureHandle_ = TextureManager::Load("sample.png");
 
-	testDebug_ = new testDebug();
-	testDebug_->Initialize();
+	inGameController_ = new InGameController();
+	inGameController_->Initialize();
 
 }
 
 void GameScene::Update()
 {
 	debugCamera_->Update();
-	testDebug_->Update();
+	inGameController_->Update();
 
 	#ifdef _DEBUG
 	ImGui::Begin("DEBUG1");
@@ -48,5 +48,5 @@ void GameScene::Draw()
 
 	Model::PostDraw();
 
-	testDebug_->Draw();
+	inGameController_->Draw();
 }

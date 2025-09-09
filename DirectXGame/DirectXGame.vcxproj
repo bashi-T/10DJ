@@ -162,6 +162,7 @@
     <ClCompile Include="MouthTracker.cpp" />
     <ClCompile Include="PlayerCursor.cpp" />
     <ClCompile Include="testDebug.cpp" />
+    <ClCompile Include="TrashCan.cpp" />
     <ClCompile Include="WadPaper.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -269,6 +270,7 @@
     <ClInclude Include="MouthTracker.h" />
     <ClInclude Include="PlayerCursor.h" />
     <ClInclude Include="testDebug.h" />
+    <ClInclude Include="TrashCan.h" />
     <ClInclude Include="WadPaper.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

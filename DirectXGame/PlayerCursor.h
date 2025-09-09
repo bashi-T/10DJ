@@ -24,7 +24,7 @@ public:
 
 private:
 	void Grab();
-
+	void CalculationForce();
 
 
 
@@ -35,6 +35,11 @@ private:
 
 	KamataEngine::Vector2 mouthPos_ {};
 	KamataEngine::Vector2 mouthScale_{};
+	KamataEngine::Vector2 prePos_  {};
+	KamataEngine::Vector2 force_{};
+
+	float forceScale_ = 0.0f;
+
 
 	bool inGame_ = false;
 	bool isGrab_ = false;

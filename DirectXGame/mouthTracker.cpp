@@ -22,6 +22,3 @@ Vector2 MouthTracker::GetMouthPos()
 	return mouthPos_; 
 }
 
-
-
-

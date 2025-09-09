@@ -18,7 +18,12 @@ public:
 	KamataEngine::Vector2 GetSize() const { return wadPaper_->GetSize(); }
 
 private:
+
+	void AddGravity();
+
 	KamataEngine::Sprite* wadPaper_ = nullptr;
 	uint32_t textureHandle_ = 0;
 	float paperSize_ = 0;
+	bool isGrabed_ = false;
+	float gravity_ = 1.0f;
 };

@@ -15,11 +15,11 @@ PlayerCursor::~PlayerCursor() {
 
 
 void PlayerCursor::Initialize(uint32_t TextureHandle,float AnchorPoint,float Scale) {
-
 	cursor_ = Sprite::Create(TextureHandle,mouthTracker_->GetMouthPos());
 	cursor_->SetAnchorPoint({AnchorPoint, AnchorPoint});
 	cursor_->SetSize({Scale,Scale});
 	mouthScale_ = {Scale, Scale};
+	forceScale_ = 2.0f;
 }
 
 void PlayerCursor::Update() {
@@ -29,8 +29,7 @@ void PlayerCursor::Update() {
 	cursor_->SetPosition(mouthPos_);
 
 
-	//以下ゲーム中のみ
-	if (!inGame_) { return; }
+	//if (!inGame_) { return; }
 	Grab();
 
 }
@@ -53,8 +52,19 @@ bool PlayerCursor::MouthCollsion(const Vector2& SquarePos, const Vector2& Square
 
 }
 
+//髪を掴む
 void PlayerCursor::Grab() {
 	if (!isTouch_) {	return;}
+
 	if (!Input::GetInstance()->IsPressMouse(0)) {	return;}
 	wadPaper_->SetPosition(mouthPos_);
+	CalculationForce();
 }
+
+void PlayerCursor::CalculationForce()
+{
+	Vector2 distance = { mouthPos_.x - prePos_.x , mouthPos_.y - prePos_.y };
+	force_ = { distance.x * forceScale_ , distance.y * forceScale_ };
+	prePos_ = mouthPos_;
+}
+
