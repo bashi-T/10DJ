@@ -161,6 +161,7 @@
     <ClCompile Include="Math\Collision.cpp" />
     <ClCompile Include="MouthTracker.cpp" />
     <ClCompile Include="PlayerCursor.cpp" />
+    <ClCompile Include="Portal.cpp" />
     <ClCompile Include="testDebug.cpp" />
     <ClCompile Include="TextureLoader.cpp" />
     <ClCompile Include="TrashCan.cpp" />
@@ -270,6 +271,7 @@
     <ClInclude Include="Math\Collision.h" />
     <ClInclude Include="MouthTracker.h" />
     <ClInclude Include="PlayerCursor.h" />
+    <ClInclude Include="Portal.h" />
     <ClInclude Include="testDebug.h" />
     <ClInclude Include="TextureLoader.h" />
     <ClInclude Include="TrashCan.h" />
