@@ -98,7 +98,9 @@ bool isCollision(const KamataEngine::Vector2& square, const KamataEngine::Vector
 bool isCollisionToMouse(const KamataEngine::Vector2& mouseSquareLength, const KamataEngine::Vector2& spriteSquare, const KamataEngine::Vector2& spriteSquareLength)
 {
 	POINT pos;
+	HWND hwnd = WinApp::GetInstance()->GetHwnd();
 	GetCursorPos(&pos);
+	ScreenToClient(hwnd, &pos);
 	Vector2 mousePos = {(float)pos.x, (float)pos.y};
 
 	if (sqrt((mousePos.x - spriteSquare.x) * (mousePos.x - spriteSquare.x)) <= mouseSquareLength.x / 2 + spriteSquareLength.x / 2 &&

@@ -33,7 +33,9 @@ void GameScene::Update()
 	sceneManager_->Update();
 
 	POINT pos;
+	HWND hwnd = WinApp::GetInstance()->GetHwnd();
 	GetCursorPos(&pos);
+	ScreenToClient(hwnd, &pos);
 	Vector2 mousePos = {(float)pos.x, (float)pos.y};
 	sprite_->SetPosition(mousePos);
 
