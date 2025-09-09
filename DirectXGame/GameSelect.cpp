@@ -38,6 +38,17 @@ void GameSelect::Initialize()
 		
 		sprites_[i] = Sprite::Create(textureHandles_[i], position);
 	}
+
+	uint32_t whiteTexture = TextureManager::Load("Fade.png");
+    fadeSprite_ = Sprite::Create(whiteTexture, {screenWidth / 2.0f, screenHeight / 2.0f});
+    fadeSprite_->SetSize({(float)screenWidth, (float)screenHeight});
+
+    // フェードインをしたいなら最初は黒（不透明）にしておく
+    fadeAlpha_ = 1.0f;      // 1.0 = 完全黒（画面覆う）
+    isFadingIn_ = true;     // シーン開始時にフェードインを行う
+    isFadingOut_ = false;
+    fadeSpeed_ = 0.02f;
+    fadeSprite_->SetColor({0.0f, 0.0f, 0.0f, fadeAlpha_});
 }
 
 void GameSelect::Update()
@@ -47,6 +58,37 @@ void GameSelect::Update()
 
 	// マウスカーソルの座標を取得 (KamataEngineの関数に置き換えてください)
 	Input* input = Input::GetInstance(); 
+
+	 // --- フェードイン処理（シーン開始） ---
+    if (isFadingIn_) {
+        fadeAlpha_ -= fadeSpeed_;
+        if (fadeAlpha_ <= 0.0f) {
+            fadeAlpha_ = 0.0f;
+            isFadingIn_ = false; // フェードイン完了、通常処理へ
+        }
+        fadeSprite_->SetColor({0.0f, 0.0f, 0.0f, fadeAlpha_});
+        return; // フェード中は他の入力やアニメは無効にするなら return
+    }
+
+    // --- フェードアウト処理（シーン遷移前） ---
+    if (isFadingOut_) {
+        fadeAlpha_ += fadeSpeed_;
+        if (fadeAlpha_ >= 1.0f) {
+            fadeAlpha_ = 1.0f;
+            // フェードアウト完了 → シーン切替
+            // ここで実際にシーン切替を呼ぶ（SceneManager 等の実装に合わせて）
+            // 例: SceneManager::GetInstance()->ChangeScene(nextScene_);
+        }
+        fadeSprite_->SetColor({0.0f, 0.0f, 0.0f, fadeAlpha_});
+        return; // フェード中は入力やアニメ停止
+    }
+
+	if (hoveredSprite_ != -1 && input->IsTriggerMouse(0)) {
+    isFadingOut_ = true;
+    nextScene_ = hoveredSprite_ + 1;
+    fadeAlpha_ = 0.0f; // 透明 -> 構築するため 0 から増やす
+    fadeSprite_->SetColor({0.0f, 0.0f, 0.0f, fadeAlpha_});
+}
 
 	Vector2 mousePosition = input->GetMousePosition();
 
@@ -108,5 +150,11 @@ void GameSelect::Draw()
 	for(int i = 0; i < kStageCount; i++) {
 	    sprites_[i]->Draw();
 	}
+	for(int i = 0; i < kStageCount; i++) {
+    sprites_[i]->Draw();
+}
+if (fadeAlpha_ > 0.0f) {
+    fadeSprite_->Draw();
+}
 	Sprite::PostDraw();
 }

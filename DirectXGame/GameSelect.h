@@ -31,5 +31,12 @@ private:
 	int hoveredSprite_ = -1; // マウスが重なっているスプライトの番号 (-1はどこにも重なっていない)
     float animationTimer_ = 0.0f; // アニメーション用のタイマー
     bool isScalingUp_ = true;    // trueなら拡大中、falseなら縮小中
+
+	Sprite* fadeSprite_{ nullptr }; 
+	bool isFadingIn_ = false;
+bool isFadingOut_ = false;
+float fadeAlpha_ = 0.0f;
+float fadeSpeed_ = 0.02f;
+int nextScene_ = -1;
 };
 
