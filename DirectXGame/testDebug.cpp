@@ -31,9 +31,9 @@ void testDebug::Initialize() {
 
 	testBox_->SetAnchorPoint({0.5f, 0.5f});
 	
-	wadPaper_ = new WadPaper(textureHandle_, 15.0f);
-	wadPaper_->Initialize({400, 300}, {0.5f, 0.5f});
-	playerCursor_->SetWadPaper(wadPaper_);
+	//wadPaper_ = new WadPaper(textureHandle_, 15.0f);
+	//wadPaper_->Initialize({400, 300}, {0.5f, 0.5f});
+	//playerCursor_->SetWadPaper(wadPaper_);
 }
 
 

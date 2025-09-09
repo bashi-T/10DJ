@@ -2,7 +2,6 @@
 #include<algorithm>
 #include <KamataEngine.h>
 #include "MouthTracker.h"
-#include "WadPaper.h"
 
 class PlayerCursor {
 public:
@@ -18,19 +17,20 @@ public:
 
 	void SetInGameFlag(bool inGame) { isGrab_ = inGame; }
 
-	void SetWadPaper(WadPaper* wadPaper) { wadPaper_ = wadPaper; }
 	void TouchWadPaper(bool touch) { isTouch_ = touch; }
+
+	KamataEngine::Vector2 GetPosition() const { return mouthPos_; }
+	KamataEngine::Vector2 GetSize() const { return mouthScale_; }
 	
 
 private:
-	void Grab();
+	//void Grab();
 	void CalculationForce();
 
 
 
 	MouthTracker* mouthTracker_ = nullptr;
 	Sprite* cursor_ = nullptr;
-	WadPaper* wadPaper_ = nullptr;
 
 
 	KamataEngine::Vector2 mouthPos_ {};

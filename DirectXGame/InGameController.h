@@ -5,23 +5,40 @@
 #include "PlayerCursor.h"
 #include "WadPaper.h"
 #include "TextureLoader.h"
+#include "TrashCan.h"
 
 class InGameController {
 public:
 
-	InGameController();
+	InGameController(const KamataEngine::Vector2 screenSize);
 	~InGameController();
 
 	void Initialize();
 	void Update();
 	void Draw();
 
+
+
 private:
+
+	void RespornWadPaper();
+	void IsClear();
+	void ScreenOutSide();
+	void GameOver();
+
 	MouthTracker* mouthTracker_ = nullptr;
 	KamataEngine::Sprite* testBox_ = nullptr;
 	PlayerCursor* playerCursor_ = nullptr;
 	WadPaper* wadPaper_ = nullptr;
 	TextureLoader* textureLoader_ = nullptr;
+	TrashCan* trashCan_ = nullptr;
+	KamataEngine::Vector2 initialPaperPos_{};
+	KamataEngine::Vector2 screenSize_{};
+	float screenEdgeOffset_ = 0.0f;
 
 	float textureScale_ = 50;
+	bool inGame_ = true;
+	bool clearFlag_ = false;
+	bool gameOverFlag_ = false;
+	int life_ = 3;
 };

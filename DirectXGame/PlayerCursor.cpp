@@ -28,14 +28,17 @@ void PlayerCursor::Update() {
 	mouthPos_ = mouthTracker_->GetMouthPos();
 	cursor_->SetPosition(mouthPos_);
 
-
-	//if (!inGame_) { return; }
-	Grab();
-
 }
 
 void PlayerCursor::Draw() {
 	cursor_->Draw();
+
+
+#ifdef _DEBUG
+	ImGui::Begin("Debug2");
+	ImGui::Text("MouthPos %d,%d", (int)mouthTracker_->GetMouthPos().x, (int)mouthTracker_->GetMouthPos().y);
+	ImGui::End();
+#endif // _DEBUG
 }
 
 
@@ -50,15 +53,6 @@ bool PlayerCursor::MouthCollsion(const Vector2& SquarePos, const Vector2& Square
 
 	return false; 
 
-}
-
-//髪を掴む
-void PlayerCursor::Grab() {
-	if (!isTouch_) {	return;}
-
-	if (!Input::GetInstance()->IsPressMouse(0)) {	return;}
-	wadPaper_->SetPosition(mouthPos_);
-	CalculationForce();
 }
 
 void PlayerCursor::CalculationForce()

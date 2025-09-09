@@ -23,7 +23,7 @@ void GameScene::Initialize()
 
 	textureHandle_ = TextureManager::Load("sample.png");
 
-	inGameController_ = new InGameController();
+	inGameController_ = new InGameController({(float)screenWidth,(float)screenHeight});
 	inGameController_->Initialize();
 
 }
