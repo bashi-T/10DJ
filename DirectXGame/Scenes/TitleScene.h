@@ -23,6 +23,8 @@ private:
 	KamataEngine::Sprite* titleSprite_ = nullptr;
 	uint32_t bgHandle_ = 0;
 	uint32_t titleHandle_ = 0;
+	uint32_t uiTextureHandle_ = 0;
+	KamataEngine::Sprite* UI_ = nullptr;
 
 	Fade* fade_ = nullptr;
 

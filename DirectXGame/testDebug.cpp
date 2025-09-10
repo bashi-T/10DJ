@@ -53,8 +53,8 @@ void testDebug::Update() {
 	#ifdef _DEBUG
 	ImGui::Begin("Debug2");
 	ImGui::Text("MouthPos %d,%d", (int)mouthTracker_->GetMouthPos().x, (int)mouthTracker_->GetMouthPos().y);
-	ImGui::Text("CursorCollision %d", test);
-	ImGui::Text("CursorCollision2 %d", test2);
+	//ImGui::Text("CursorCollision %d", test);
+	//ImGui::Text("CursorCollision2 %d", test2);
 	ImGui::End();
 	#endif // _DEBUG
 }
