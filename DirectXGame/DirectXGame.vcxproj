@@ -162,6 +162,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Math\CGVector.cpp" />
     <ClCompile Include="Math\Collision.cpp" />
+    <ClCompile Include="Math\StageMapChip.cpp" />
     <ClCompile Include="MouthTracker.cpp" />
     <ClCompile Include="PlayerCursor.cpp" />
     <ClCompile Include="Portal.cpp" />
@@ -275,6 +276,7 @@
     <ClInclude Include="InGameController.h" />
     <ClInclude Include="Math\CGVector.h" />
     <ClInclude Include="Math\Collision.h" />
+    <ClInclude Include="Math\StageMapChip.h" />
     <ClInclude Include="MouthTracker.h" />
     <ClInclude Include="PlayerCursor.h" />
     <ClInclude Include="Portal.h" />
