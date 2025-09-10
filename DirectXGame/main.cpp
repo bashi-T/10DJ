@@ -1,14 +1,12 @@
 #include <Windows.h>
 #include "KamataEngine.h"
 #include "Scenes/GameScene.h"
+#include "Fade.h"
 
 using namespace KamataEngine;
 
-// Windowsアプリでのエントリーポイント(main関数)
-int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int)
-{
-	DirectXCommon* dxCommon = DirectXCommon::GetInstance();
-	GameScene* gameScene = new GameScene;
+int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
+    DirectXCommon* dxCommon = DirectXCommon::GetInstance();
 
 
 	Initialize(L"Boundrick");
@@ -21,25 +19,27 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int)
 			break;
 		}
 
-		imguiManager->Begin();
+        imguiManager->Begin();
 
 		gameScene->Update();
 		
 		imguiManager->End();
 
-		//描画開始
-		dxCommon->PreDraw();
+        // 描画開始
+        dxCommon->PreDraw();
 
 		gameScene->Draw();
 		
 		imguiManager->Draw();
 
-		//描画終了
-		dxCommon->PostDraw();
-	}
+        // 描画終了
+        dxCommon->PostDraw();
+    }
 
-	delete gameScene;
-	gameScene = nullptr;
-	Finalize();
-	return 0;
+    // メモリ解放
+    delete titleScene;
+    delete gameScene;
+
+    Finalize();
+    return 0;
 }

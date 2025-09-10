@@ -157,6 +157,8 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Fade.cpp" />
+    <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="AudioLoader.cpp" />
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="Confetti.cpp" />
@@ -167,6 +169,9 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Math\CGVector.cpp" />
     <ClCompile Include="Math\Collision.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="Math\StageMapChip.cpp" />
     <ClCompile Include="MouthTracker.cpp" />
     <ClCompile Include="PlayerCursor.cpp" />
@@ -281,6 +286,8 @@
     <None Include="Resources\shaders\Sprite.hlsli" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Fade.h" />
+    <ClInclude Include="GameScene.h" />
     <ClInclude Include="AudioLoader.h" />
     <ClInclude Include="Block.h" />
     <ClInclude Include="Confetti.h" />
@@ -290,6 +297,8 @@
     <ClInclude Include="GameSelect.h" />
     <ClInclude Include="Math\CGVector.h" />
     <ClInclude Include="Math\Collision.h" />
+    <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="TitleScene.h" />
     <ClInclude Include="Math\StageMapChip.h" />
     <ClInclude Include="MouthTracker.h" />
     <ClInclude Include="PlayerCursor.h" />
