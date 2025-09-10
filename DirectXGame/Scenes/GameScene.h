@@ -1,7 +1,6 @@
 #pragma once
 #include "KamataEngine.h"
-#include"BaseScene.h"
-#include"SceneManager.h"
+#include "InGameController.h"
 
 class GameScene
 {
@@ -19,13 +18,13 @@ private:
 	KamataEngine::WorldTransform worldTransform_;
 	KamataEngine::Camera camera_;
 	KamataEngine::DebugCamera* debugCamera_ = nullptr;
-	KamataEngine::Sprite* sprite_ = nullptr;
+	
 
-	SceneManager* sceneManager_ = nullptr;
-	int32_t currentSceneNo_ = 0;
-	int32_t prevSceneNo_ = 0;
 
-	ResultScene* resultScene_ = nullptr;
 	uint32_t textureHandle_ = 0;
-	uint32_t textureHandleSprite_ = 0;
+	int screenWidth = 1280;
+	int screenHeight = 720;
+
+	InGameController*  inGameController_ = nullptr;
+
 };
