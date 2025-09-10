@@ -115,10 +115,12 @@ std::unique_ptr<BaseScene> SelectScene::Update()
         }
         else if (hoveredSprite_ == 1) {
             Audio::GetInstance()->StopWave(soundDataHandle_);
+            SceneManager::GetInstance()->SetStageNumber(0);
             return std::make_unique<InGameScene>();
         }
         else if (hoveredSprite_ == 2) {
             Audio::GetInstance()->StopWave(soundDataHandle_);
+            SceneManager::GetInstance()->SetStageNumber(1);
             return std::make_unique<InGameScene>();
         }
 }

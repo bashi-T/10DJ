@@ -22,9 +22,9 @@ InGameController::InGameController(const Vector2 screenSize,int32_t stageNumber)
 		portalA_ = new Portal({ 400, 0 }, { 400, screenSize_.y }, { 400, 50 }, textureLoader_->GetPortalTextureHandle());
 		portalB_ = new Portal({ 400, screenSize_.y }, { 400, 0 }, { 400, 50 }, textureLoader_->GetPortalTextureHandle());
 	}
-	else {
-		initialPaperPos_ = { 400, 300 };
-		grabArea_ = new GrabArea(textureLoader_->GetGrabAreaTexture(), initialPaperPos_, { 400,400 });
+	else if(stageNumber==1) {
+		initialPaperPos_ = { 200, 600 };
+		grabArea_ = new GrabArea(textureLoader_->GetGrabAreaTexture(), initialPaperPos_, { 100,100 });
 
 		Vector2 portalApos = { 0,300 };
 		Vector2 portalASize = { 50,400 };
