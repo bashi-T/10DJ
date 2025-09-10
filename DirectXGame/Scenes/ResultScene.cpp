@@ -2,6 +2,15 @@
 
 using namespace KamataEngine;
 
+ResultScene::ResultScene()
+{
+}
+
+ResultScene::~ResultScene()
+{
+	delete fade_;
+}
+
 void ResultScene::Initialize()
 {
 	if (isClear_)
@@ -21,6 +30,12 @@ void ResultScene::Initialize()
 	select = Sprite::Create(textureHandleSelect_, posSelect_, {1, 1, 1, 1}, {0.5, 0.5});
 	textureHandleRetry_ = TextureManager::Load("retry.png");
 	retry = Sprite::Create(textureHandleRetry_, posRetry_, {1, 1, 1, 1}, {0.5, 0.5});
+
+fade_=new Fade();
+fade_->Initialize();
+fade_->Start(Fade::Status::FadeIn,1);
+
+
 }
 
 std::unique_ptr<BaseScene> ResultScene::Update()
@@ -47,23 +62,29 @@ std::unique_ptr<BaseScene> ResultScene::Update()
 			isInGameScene_ = true;
 		}
 	}
+	fade_->Update();
 
 	if (isTitleScene_ == true)
 	{
+		fade_->Start(Fade::Status::FadeOut,1);
 		return std::make_unique<TitleScene>();
 	}
 	else if (isSelectScene_ == true)
 	{
+		fade_->Start(Fade::Status::FadeOut,1);
 		return std::make_unique<SelectScene>();
 	}
 	else if (isInGameScene_ == true)
 	{
+		fade_->Start(Fade::Status::FadeOut,1);
 		return std::make_unique<InGameScene>();
 	}
 	else
 	{
 		return nullptr;
 	}
+
+	
 }
 
 void ResultScene::Draw() 
@@ -73,5 +94,6 @@ void ResultScene::Draw()
 	title->Draw();
 	select->Draw();
 	retry->Draw();
+	fade_->Draw();
 	Sprite::PostDraw();
 }

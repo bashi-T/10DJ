@@ -2,6 +2,7 @@
 #include "BaseScene.h"
 #include "KamataEngine.h"
 #include "InGameController.h"
+#include "Fade.h"
 
 class InGameScene : public BaseScene
 {
@@ -22,4 +23,5 @@ private:
 	InGameController* inGameController_ = nullptr;
 
 	bool isResultScene_ = false;
+	Fade*fade_=nullptr;
 };

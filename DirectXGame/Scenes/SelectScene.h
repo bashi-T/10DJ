@@ -4,6 +4,7 @@
 #include "KamataEngine.h"
 #include"input/Input.h"
 #include <3d/WorldTransform.h>
+#include "Fade.h"
 using namespace KamataEngine; 
 
 class SelectScene : public BaseScene
@@ -40,4 +41,6 @@ private:
     bool wasHovered_[kStageCount]{};
     float animationTimer_ = 0.0f;
 	Vector2 baseSpriteSize_[kStageCount];
+
+	Fade*fade_=nullptr;
 };

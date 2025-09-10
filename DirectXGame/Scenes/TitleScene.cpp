@@ -17,7 +17,7 @@ TitleScene::~TitleScene()
 
 void TitleScene::Initialize() {
 bgHandle_ = TextureManager::Load("Titlebg.png");
-    titleHandle_ = TextureManager::Load("Title.png");
+    titleHandle_ = TextureManager::Load("Title1.png");
     Vector2 position={0,0};
     bgSprite_ = Sprite::Create(bgHandle_,position);
     titleSprite_ = Sprite::Create(titleHandle_,{-100,-150});
@@ -29,8 +29,10 @@ bgHandle_ = TextureManager::Load("Titlebg.png");
 
 std::unique_ptr<BaseScene> TitleScene::Update()
 {
-     if (Input::GetInstance()->TriggerKey(DIK_SPACE)) {
+    Input* input = Input::GetInstance();
+     if (Input::GetInstance()->TriggerKey(DIK_SPACE)||input->IsTriggerMouse(0)) {
       fade_->Start(Fade::Status::FadeOut,1);
+      return std::make_unique<SelectScene>();
     }
 
     fade_->Update();

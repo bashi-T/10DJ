@@ -5,10 +5,13 @@
 #include "InGameScene.h"
 #include "KamataEngine.h"
 #include "Math/Collision.h"
+#include "Fade.h"
 
 class ResultScene : public BaseScene
 {
 public:
+	ResultScene();
+	~ResultScene();
 
 	void Initialize();
 
@@ -35,4 +38,6 @@ private:
 	bool isTitleScene_ = false;
 	bool isSelectScene_ = false;
 	bool isInGameScene_ = false;
+
+	Fade*fade_=nullptr;
 };

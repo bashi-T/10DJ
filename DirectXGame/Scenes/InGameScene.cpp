@@ -7,7 +7,7 @@ InGameScene::InGameScene() {}
 
 InGameScene::~InGameScene() 
 {
-
+	delete fade_;
 	delete inGameController_;
 }
 
@@ -18,6 +18,11 @@ void InGameScene::Initialize()
 
 	inGameController_ = new InGameController({(float)KamataEngine::WinApp::kWindowWidth, (float)KamataEngine::WinApp::kWindowHeight});
 	inGameController_->Initialize();
+
+	fade_=new Fade();
+fade_->Initialize();
+fade_->Start(Fade::Status::FadeIn,1);
+
 }
 
 std::unique_ptr<BaseScene> InGameScene::Update()
@@ -26,6 +31,8 @@ std::unique_ptr<BaseScene> InGameScene::Update()
 		inGameController_->Initialize();
 	}
 	inGameController_->Update();
+
+	fade_->Update();
 
 #ifdef _DEBUG 
 	ImGui::Begin("INGAME");
@@ -37,4 +44,5 @@ std::unique_ptr<BaseScene> InGameScene::Update()
 void InGameScene::Draw() 
 {
 	inGameController_->Draw();
+	fade_->Draw();
 }

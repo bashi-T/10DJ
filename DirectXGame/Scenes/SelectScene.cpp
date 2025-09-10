@@ -10,6 +10,7 @@ SelectScene::~SelectScene()
 	delete sprites_[i];
 	}
 	delete debugCamera_;
+    delete fade_;
 }
 
 void SelectScene::Initialize() {
@@ -46,7 +47,9 @@ void SelectScene::Initialize() {
 
         baseSpriteSize_[i] = sprites_[i]->GetSize();  // 元サイズを保存
 	}
-
+    fade_=new Fade();
+fade_->Initialize();
+fade_->Start(Fade::Status::FadeIn,1);
 }
 
 std::unique_ptr<BaseScene> SelectScene::Update()
@@ -103,18 +106,22 @@ std::unique_ptr<BaseScene> SelectScene::Update()
       // 左クリックで遷移処理
     if (input->IsTriggerMouse(0)) {
         if (hoveredSprite_ == 0) {
+             fade_->Start(Fade::Status::FadeOut,1);
             Audio::GetInstance()->StopWave(soundDataHandle_);
             return std::make_unique<TitleScene>();
         }
         else if (hoveredSprite_ == 1) {
+             fade_->Start(Fade::Status::FadeOut,1);
             Audio::GetInstance()->StopWave(soundDataHandle_);
             return std::make_unique<InGameScene>();
         }
         else if (hoveredSprite_ == 2) {
+             fade_->Start(Fade::Status::FadeOut,1);
             Audio::GetInstance()->StopWave(soundDataHandle_);
             return std::make_unique<ResultScene>();
         }
 }
+    fade_->Update();
 
 #ifdef _DEBUG 
 	ImGui::Begin("SELECT");
@@ -129,5 +136,6 @@ void SelectScene::Draw() {
 	for(int i = 0; i < kStageCount; i++) {
 	    sprites_[i]->Draw();
 	}
+    fade_->Draw();
 
 	Sprite::PostDraw();}
