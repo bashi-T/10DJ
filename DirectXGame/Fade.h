@@ -1,18 +1,10 @@
 #pragma once
 #include <d3d12.h>
-#include <wrl.h>
 
-// フェード状態
 enum class FadeState {
     NONE,
     FADE_IN,
     FADE_OUT
-};
-
-// 定数バッファ構造体
-struct FadeConstantBuffer {
-    float alpha;
-    float padding[3]; // 16バイト境界合わせ
 };
 
 class Fade {
@@ -23,13 +15,11 @@ private:
 
 public:
     Fade();
-
     void Start(FadeState fadeType, float fadeSpeed);
     void Update();
-    void Draw(ID3D12GraphicsCommandList* cmdList);
+    void Draw(); // KamataEngine なら Sprite で黒四角を描画してもOK
 
     bool IsFinished() const;
     float GetAlpha() const { return alpha; }
     FadeState GetState() const { return state; }
 };
-

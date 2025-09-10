@@ -6,8 +6,8 @@ Fade::Fade() : state(FadeState::NONE), alpha(0.0f), speed(0.02f) {}
 void Fade::Start(FadeState fadeType, float fadeSpeed) {
     state = fadeType;
     speed = fadeSpeed;
-    if (fadeType == FadeState::FADE_IN) alpha = 1.0f;  // 真っ黒から透明へ
-    if (fadeType == FadeState::FADE_OUT) alpha = 0.0f; // 透明から真っ黒へ
+    if (fadeType == FadeState::FADE_IN) alpha = 1.0f;
+    if (fadeType == FadeState::FADE_OUT) alpha = 0.0f;
 }
 
 void Fade::Update() {
@@ -31,12 +31,8 @@ bool Fade::IsFinished() const {
     return state == FadeState::NONE;
 }
 
-void Fade::Draw(ID3D12GraphicsCommandList* cmdList) {
+void Fade::Draw() {
     if (alpha <= 0.0f) return;
-
-    // TODO:
-    // 1. フルスクリーンクアッドを用意
-    // 2. PSOでアルファブレンドを有効化
-    // 3. 定数バッファに alpha を渡す
-    // 4. 黒四角を描画
+    // TODO: KamataEngine の Sprite で黒四角を画面全体に描画
+    // alpha 値を乗算してブレンドする
 }

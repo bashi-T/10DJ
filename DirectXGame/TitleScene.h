@@ -1,16 +1,22 @@
 #pragma once
-#include "Object.h"
+#include "KamataEngine.h"
 #include "Fade.h"
-#include <windows.h>
 
 class TitleScene {
-private:
-    Object paper;
-    Object bin;
-    bool isDragging;
-
 public:
     TitleScene();
-    void Update(HWND hwnd, Fade& fade);
-    void Draw(ID3D12GraphicsCommandList* cmdList, Fade& fade);
+    ~TitleScene();
+
+    void Initialize();
+    void Update(Fade& fade);
+    void Draw(Fade& fade);
+
+private:
+    KamataEngine::Sprite* bgSprite_ = nullptr;
+    KamataEngine::Sprite* titleSprite_ = nullptr;
+    uint32_t bgHandle_ = 0;
+    uint32_t titleHandle_ = 0;
+
+    int screenWidth = 1280;
+    int screenHeight = 720;
 };

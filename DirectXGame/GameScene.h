@@ -17,6 +17,7 @@ private:
 	KamataEngine::WorldTransform worldTransform_;
 	KamataEngine::Camera camera_;
 	KamataEngine::DebugCamera* debugCamera_ = nullptr;
+	KamataEngine::Sprite* sprite_ = nullptr;
 
 	uint32_t textureHandle_ = 0;
 	int screenWidth = 1280;

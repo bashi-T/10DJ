@@ -2,7 +2,7 @@
 
 enum SceneType {
     TITLE,
-    STAGESELECT
+    STAGE_SELECT
 };
 
 class SceneManager {

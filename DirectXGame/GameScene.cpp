@@ -8,6 +8,7 @@ GameScene::~GameScene()
 {
 	delete model_;
 	delete debugCamera_;
+	delete sprite_;
 }
 
 void GameScene::Initialize() 
@@ -16,13 +17,12 @@ void GameScene::Initialize()
 	worldTransform_.Initialize();
 	camera_.Initialize();
 	debugCamera_ = new DebugCamera(screenWidth,screenHeight);
+	sprite_ = Sprite::Create(textureHandle_, { 1280,720 });
 
-	textureHandle_ = TextureManager::Load("sample.png");
 }
 
 void GameScene::Update()
 {
-
 	debugCamera_->Update();
 	#ifdef _DEBUG
 	ImGui::Begin("DEBUG1");
