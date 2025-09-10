@@ -129,8 +129,21 @@ bool isCollision(const Sphere& sphere1, const Sphere& sphere2)
 
 void PushBack(KamataEngine::Vector2& garbagePos, KamataEngine::Vector2& garbageVector, KamataEngine::Vector2& garbageSize, KamataEngine::Vector2& wallPos, KamataEngine::Vector2& wallSize)
 {
-	if (garbagePos.x - wallPos.x > (garbageSize.x + wallSize.x) / 2 || wallPos.x - garbagePos.x > (garbageSize.x + wallSize.x) / 2)
+	if (garbagePos.x - wallPos.x < (garbageSize.x + wallSize.x) / 2 && wallPos.x + wallSize.x / 2 < garbagePos.x && wallPos.x - wallSize.x / 2 > garbagePos.x)
+	{//ごみと壁が接触判定中かつごみの中心のxが壁の外側にあるとき(上下から接触されていないとき)
+		garbageVector.x *= -1;
+	}
+	else if (wallPos.x - garbagePos.x < (garbageSize.x + wallSize.x) / 2 && wallPos.x + wallSize.x / 2 < garbagePos.x && wallPos.x - wallSize.x / 2 > garbagePos.x)
 	{
 		garbageVector.x *= -1;
+	}
+
+	if (garbagePos.y - wallPos.y < (garbageSize.y + wallSize.y) / 2 && wallPos.y + wallSize.y / 2 < garbagePos.y && wallPos.y - wallSize.y / 2 > garbagePos.y)
+	{//ごみと壁が接触判定中かつごみの中心のyが壁の外側にあるとき(上下から接触されていないとき)
+		garbageVector.y *= -1;
+	}
+	else if (wallPos.y - garbagePos.y < (garbageSize.y + wallSize.y) / 2 && wallPos.y + wallSize.y / 2 < garbagePos.y && wallPos.y - wallSize.y / 2 > garbagePos.y)
+	{
+		garbageVector.y *= -1;
 	}
 }
