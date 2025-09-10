@@ -2,9 +2,8 @@
 #include "Math/Collision.h"
 
 
-TrashCan::TrashCan(uint32_t textureHandle,Confetti* confetti)
+TrashCan::TrashCan(uint32_t textureHandle)
 {
-	confetti_ = confetti;
 	textureHandle_ = textureHandle;
 	trashCanSize_ = 100.0f;
 	position_ = { 800.0f,600.0f };
@@ -25,12 +24,12 @@ void TrashCan::Initialize()
 
 void TrashCan::Update()
 {
-	//confetti_->Update();
+
 }
 
 void TrashCan::Draw()
 {
-	//confetti_->Draw();
+
 	trashCan_->Draw();
 }
 

@@ -12,12 +12,12 @@ InGameController::InGameController(const Vector2 screenSize) {
 	screenSize_ = screenSize;
 	screenEdgeOffset_ = 2000.0f;
 	textureLoader_ = new TextureLoader();
-	effectController = new EffectController(textureLoader_);
+	effectController_ = new EffectController(textureLoader_);
 	mouthTracker_ = new MouthTracker();
 
 	audioLoader_ = new AudioLoader();
 	playerCursor_ = new PlayerCursor();
-	trashCan_ = new TrashCan(textureLoader_->GetTrashCanTexture(),effectController->GetConfetti());
+	trashCan_ = new TrashCan(textureLoader_->GetTrashCanTexture());
 	wadPaper_ = new WadPaper(textureLoader_->GetWadPaperTexture(), 15.0f);
 	grabArea_ = new GrabArea(textureLoader_->GetGrabAreaTexture(), initialPaperPos_, { 400,400 });
 	portalA_ = new Portal({400, 0}, {400, screenSize_.y}, {400, 50}, textureLoader_->GetPortalTextureHandle());
@@ -33,6 +33,7 @@ InGameController::~InGameController() {
 	delete grabArea_;
 	delete portalA_;
 	delete portalB_;
+	delete effectController_;
 }
 
 
@@ -56,7 +57,7 @@ void InGameController::Initialize() {
 
 	portalA_->Initialize();
 	portalB_->Initialize();
-
+	effectController_->Initialize();
 }
 
 
@@ -72,7 +73,7 @@ void InGameController::Update() {
 	grabArea_->Update();
 	portalA_->Update();
 	portalB_->Update();
-
+	effectController_->Update(life_);
 
 	if (!gameEndFlag_)
 	{
@@ -90,6 +91,7 @@ void InGameController::Update() {
 		}
 		Warp();
 	}
+	
 
 
 #ifdef _DEBUG
@@ -126,6 +128,7 @@ void InGameController::Draw() {
 
 	playerCursor_->Draw();
 
+	effectController_->Draw();
 
 	Sprite::PostDraw();
 }

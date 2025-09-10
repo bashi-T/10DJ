@@ -45,7 +45,7 @@ private:
 	GrabArea* grabArea_ = nullptr;
 	Portal* portalA_ = nullptr;
 	Portal* portalB_ = nullptr;
-	EffectController* effectController = nullptr;
+	EffectController* effectController_ = nullptr;
 
 	float textureScale_ = 50;
 	bool inGame_ = true;

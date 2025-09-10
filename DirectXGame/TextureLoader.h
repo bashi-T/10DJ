@@ -7,7 +7,7 @@ public:
 	TextureLoader();
 
 	uint32_t GetPlayerTexture() { return playerTextureHandle_; }
-	uint32_t GetWadPaperTexture() { return wadPaperTextureHandle_; }
+	uint32_t GetWadPaperTexture()const { return wadPaperTextureHandle_; }
 	uint32_t GetTrashCanTexture() { return trashCanTextureHandle_; }
 	uint32_t GetBlockTexture() { return blockTextureHandle_; }
 	uint32_t GetGrabAreaTexture() { return grabAreaTextureHandle_; }

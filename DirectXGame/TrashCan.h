@@ -4,7 +4,7 @@
 class TrashCan
 {
 public:
-	TrashCan(uint32_t textureHandle,Confetti* confetti);
+	TrashCan(uint32_t textureHandle);
 	~TrashCan();
 
 	void Initialize();
@@ -19,7 +19,6 @@ public:
 
 private:
 
-	Confetti* confetti_ = nullptr;
 	
 	KamataEngine::Sprite* trashCan_ = nullptr;
 	KamataEngine::Vector2 position_{  };

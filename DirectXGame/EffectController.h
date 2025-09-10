@@ -2,6 +2,7 @@
 #include <KamataEngine.h>
 #include "Confetti.h"
 #include "TextureLoader.h"
+#include "ShowLife.h"
 
 class EffectController {
 public:
@@ -9,15 +10,17 @@ public:
 	~EffectController();
 
 	void Initialize();
-	void Update();
+	void Update(int life);
 	void Draw();
 
-    Confetti* GetConfetti() { return confetti_; }
+
 
 	private:
 
 		Confetti* confetti_ = nullptr;
 	    int confettiCount_ = 1;
+
+		ShowLife* showLife_ = nullptr;
 
 	
 };
