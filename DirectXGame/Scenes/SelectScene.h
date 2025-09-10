@@ -34,6 +34,8 @@ private:
 	WorldTransform worldTransforms_[kStageCount];
 	uint32_t textureHandles_[kStageCount] = { 0 };    
 	Sprite*sprites_[kStageCount]={nullptr};
+	KamataEngine::Sprite* backGround_ = nullptr;
+	uint32_t backGroundTextureHandle_ = 0;
 
 	// ホバー管理
     int hoveredSprite_ = -1;

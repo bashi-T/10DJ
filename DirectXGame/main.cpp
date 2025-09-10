@@ -9,7 +9,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
     DirectXCommon* dxCommon = DirectXCommon::GetInstance();
 
 
-	Initialize(L"Boundrick");
+	Initialize(L"4022_バウンダリック");
 	GameScene* gameScene = new GameScene;
 	gameScene->Initialize();
 	ImGuiManager* imguiManager = ImGuiManager::GetInstance();
