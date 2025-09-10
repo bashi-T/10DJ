@@ -12,6 +12,7 @@ TitleScene::~TitleScene() {
 }
 
 void TitleScene::Initialize() {
+
     bgHandle_ = TextureManager::Load("Titlebg.png");
     titleHandle_ = TextureManager::Load("Title.png");
 
