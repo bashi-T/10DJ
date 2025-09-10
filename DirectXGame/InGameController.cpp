@@ -65,7 +65,7 @@ void InGameController::Initialize() {
 	backGround_->SetSize({4000, 4000});
 	backGround_->SetAnchorPoint({0.5f, 0.5f});
 
-	Audio::GetInstance()->PlayWave(audioLoader_->GetBGM());
+	//Audio::GetInstance()->PlayWave(audioLoader_->GetBGM());
 	
 }
 

@@ -17,8 +17,8 @@ void SelectScene::Initialize() {
 	camera_.Initialize();
 	debugCamera_ = new DebugCamera(screenWidth, screenHeight);
 
-    soundDataHandle_=Audio::GetInstance()->LoadWave("GameSelectBGM.mp3");
-    Audio::GetInstance()->PlayWave(soundDataHandle_,true);
+    //soundDataHandle_=Audio::GetInstance()->LoadWave("GameSelectBGM.mp3");
+    //Audio::GetInstance()->PlayWave(soundDataHandle_,true);
 
 	
 	textureHandles_[0]=TextureManager::Load("Stage0.png");

@@ -44,10 +44,10 @@ void testDebug::Update() {
 	//wadPaper_->Update();
 
 
-	bool test = playerCursor_->MouthCollsion(wadPaper_->GetPosition(), wadPaper_->GetSize());
-	bool test2 = playerCursor_->MouthCollsion(testBox_->GetPosition(), testBox_->GetSize());
+	//bool test = playerCursor_->MouthCollsion(wadPaper_->GetPosition(), wadPaper_->GetSize());
+	//bool test2 = playerCursor_->MouthCollsion(testBox_->GetPosition(), testBox_->GetSize());
 
-	playerCursor_->TouchWadPaper(test);
+	//playerCursor_->TouchWadPaper(test);
 	
 
 	#ifdef _DEBUG
