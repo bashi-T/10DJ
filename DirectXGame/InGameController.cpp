@@ -34,6 +34,7 @@ InGameController::~InGameController() {
 	delete portalA_;
 	delete portalB_;
 	delete effectController_;
+	delete backGround_;
 }
 
 
@@ -58,6 +59,14 @@ void InGameController::Initialize() {
 	portalA_->Initialize();
 	portalB_->Initialize();
 	effectController_->Initialize();
+
+	textureHandle_ = textureLoader_->GetBackGroundTextureHandle();
+	backGround_ = KamataEngine::Sprite::Create(textureHandle_, {600,300});
+	backGround_->SetSize({4000, 4000});
+	backGround_->SetAnchorPoint({0.5f, 0.5f});
+
+	Audio::GetInstance()->PlayWave(audioLoader_->GetBGM());
+	
 }
 
 
@@ -112,6 +121,8 @@ void InGameController::Update() {
 
 void InGameController::Draw() {
 	Sprite::PreDraw();
+
+	backGround_->Draw();
 
 	portalA_->Draw();
 	portalB_->Draw();

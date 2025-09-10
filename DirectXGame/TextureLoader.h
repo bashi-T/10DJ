@@ -13,6 +13,7 @@ public:
 	uint32_t GetGrabAreaTexture() { return grabAreaTextureHandle_; }
 	uint32_t GetPortalTextureHandle() { return portalTextureHandle_; }
 	uint32_t GetConfettiTextureHandle() const{ return confettiTextureHandle_; }
+	uint32_t GetBackGroundTextureHandle() { return backGroundTextureHandle_; }
 
 private:
 	uint32_t playerTextureHandle_ = 0;
@@ -22,5 +23,6 @@ private:
 	uint32_t grabAreaTextureHandle_ = 0;
 	uint32_t portalTextureHandle_ = 0;
 	uint32_t confettiTextureHandle_ = 0;
+	uint32_t backGroundTextureHandle_ = 0;
 };
 

@@ -47,6 +47,9 @@ private:
 	Portal* portalB_ = nullptr;
 	EffectController* effectController_ = nullptr;
 
+	KamataEngine::Sprite* backGround_;
+	uint32_t textureHandle_ = 0;
+
 	float textureScale_ = 50;
 	bool inGame_ = true;
 	bool clearFlag_ = false;
