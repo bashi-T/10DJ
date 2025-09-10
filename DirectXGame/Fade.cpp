@@ -33,6 +33,4 @@ bool Fade::IsFinished() const {
 
 void Fade::Draw() {
     if (alpha <= 0.0f) return;
-    // TODO: KamataEngine の Sprite で黒四角を画面全体に描画
-    // alpha 値を乗算してブレンドする
 }

@@ -160,6 +160,7 @@
     <ClCompile Include="Math\CGVector.cpp" />
     <ClCompile Include="Math\Collision.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="TitleScene.cpp" />
   </ItemGroup>
   <ItemGroup>

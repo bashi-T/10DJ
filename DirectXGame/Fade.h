@@ -17,7 +17,7 @@ public:
     Fade();
     void Start(FadeState fadeType, float fadeSpeed);
     void Update();
-    void Draw(); // KamataEngine なら Sprite で黒四角を描画してもOK
+    void Draw(); 
 
     bool IsFinished() const;
     float GetAlpha() const { return alpha; }
