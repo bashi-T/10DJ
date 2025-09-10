@@ -80,7 +80,7 @@ void InGameController::Update() {
 
 
 #ifdef _DEBUG
-	ImGui::Begin("Debug2");
+	ImGui::Begin("INGAME");
 	ImGui::Text("clearFlag %d", (int)clearFlag_);
 	ImGui::Text("life %d", (int)life_);
 	ImGui::End();

@@ -40,7 +40,7 @@ void GameScene::Update()
 	sprite_->SetPosition(mousePos);
 
 #ifdef _DEBUG
-	ImGui::Begin("DEBUG1");
+	ImGui::Begin("INGAME");
 	ImGui::Text("mousePos %f,%f", mousePos.x, mousePos.y);
 	ImGui::End();
 #endif
