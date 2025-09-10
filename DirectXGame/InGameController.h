@@ -10,6 +10,7 @@
 #include "AudioLoader.h"
 #include "GrabArea.h"
 #include "Portal.h"
+#include "EffectController.h"
 
 class InGameController {
 public:
@@ -44,6 +45,7 @@ private:
 	GrabArea* grabArea_ = nullptr;
 	Portal* portalA_ = nullptr;
 	Portal* portalB_ = nullptr;
+	EffectController* effectController = nullptr;
 
 	float textureScale_ = 50;
 	bool inGame_ = true;

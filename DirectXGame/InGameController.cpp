@@ -11,15 +11,17 @@ InGameController::InGameController(const Vector2 screenSize) {
 	ShowCursor(false);
 	screenSize_ = screenSize;
 	screenEdgeOffset_ = 2000.0f;
-	mouthTracker_ = new MouthTracker();
 	textureLoader_ = new TextureLoader();
+	effectController = new EffectController(textureLoader_);
+	mouthTracker_ = new MouthTracker();
+
 	audioLoader_ = new AudioLoader();
 	playerCursor_ = new PlayerCursor();
-	trashCan_ = new TrashCan(textureLoader_->GetTrashCanTexture());
+	trashCan_ = new TrashCan(textureLoader_->GetTrashCanTexture(),effectController->GetConfetti());
 	wadPaper_ = new WadPaper(textureLoader_->GetWadPaperTexture(), 15.0f);
 	grabArea_ = new GrabArea(textureLoader_->GetGrabAreaTexture(), initialPaperPos_, { 400,400 });
-	portalA_ = new Portal({400, 0}, {400, screenSize_.y}, {400, 100}, textureLoader_->GetPortalTextureHandle());
-	portalB_ = new Portal({400, screenSize_.y}, {400, 0}, {400, 100}, textureLoader_->GetPortalTextureHandle());
+	portalA_ = new Portal({400, 0}, {400, screenSize_.y}, {400, 50}, textureLoader_->GetPortalTextureHandle());
+	portalB_ = new Portal({400, screenSize_.y}, {400, 0}, {400, 50}, textureLoader_->GetPortalTextureHandle());
 }
 
 InGameController::~InGameController() {

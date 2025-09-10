@@ -1,9 +1,10 @@
 #pragma once
 #include <KamataEngine.h>
+#include "Confetti.h"
 class TrashCan
 {
 public:
-	TrashCan(uint32_t textureHandle);
+	TrashCan(uint32_t textureHandle,Confetti* confetti);
 	~TrashCan();
 
 	void Initialize();
@@ -18,8 +19,8 @@ public:
 
 private:
 
+	Confetti* confetti_ = nullptr;
 	
-
 	KamataEngine::Sprite* trashCan_ = nullptr;
 	KamataEngine::Vector2 position_{  };
 
