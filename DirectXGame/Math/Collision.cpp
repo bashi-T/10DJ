@@ -129,7 +129,7 @@ bool isCollision(const Sphere& sphere1, const Sphere& sphere2)
 
 void PushBack(KamataEngine::Vector2& garbagePos, KamataEngine::Vector2& garbageVector, KamataEngine::Vector2& garbageSize, KamataEngine::Vector2& wallPos, KamataEngine::Vector2& wallSize)
 {
-	if (garbagePos.x - wallPos.x > || garbagePos.x < wallPos.x)
+	if (garbagePos.x - wallPos.x > (garbageSize.x + wallSize.x) / 2 || wallPos.x - garbagePos.x > (garbageSize.x + wallSize.x) / 2)
 	{
 		garbageVector.x *= -1;
 	}
