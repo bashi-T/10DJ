@@ -1,7 +1,9 @@
 #pragma once
 #include "BaseScene.h"
+#include"SceneManager.h"
 #include "KamataEngine.h"
 #include "InGameController.h"
+#include "Fade.h"
 
 class InGameScene : public BaseScene
 {
@@ -20,6 +22,7 @@ private:
 	KamataEngine::Camera camera_;
 
 	InGameController* inGameController_ = nullptr;
+	Fade* fade_ = nullptr;
 
 	bool isResultScene_ = false;
 };

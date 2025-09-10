@@ -22,7 +22,9 @@ public:
 	void Update();
 	void Draw();
 
-
+	bool IsGameEndFlag() { return gameEndFlag_; }
+	bool IsGameClearFlag() { return clearFlag_; }
+	bool IsGameOverFlag() { return gameOverFlag_; }
 
 private:
 

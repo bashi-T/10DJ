@@ -1,8 +1,6 @@
 #pragma once
 #include "BaseScene.h"
-#include "TitleScene.h"
-#include "SelectScene.h"
-#include "InGameScene.h"
+#include"SceneManager.h"
 #include "KamataEngine.h"
 #include "Math/Collision.h"
 
@@ -27,11 +25,10 @@ private:
 	uint32_t textureHandleSelect_ = 0;
 	uint32_t textureHandleRetry_ = 0;
 
-	KamataEngine::Vector2 posTitle_ = {400, 250};
-	KamataEngine::Vector2 posSelect_ = {400, 400};
-	KamataEngine::Vector2 posRetry_ = {400, 550};
+	KamataEngine::Vector2 posTitle_ = {400, 400};
+	KamataEngine::Vector2 posSelect_ = {600, 400};
+	KamataEngine::Vector2 posRetry_ = {800, 400};
 
-	bool isClear_ = false;
 	bool isTitleScene_ = false;
 	bool isSelectScene_ = false;
 	bool isInGameScene_ = false;

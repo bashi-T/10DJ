@@ -4,18 +4,18 @@ using namespace KamataEngine;
 
 void ResultScene::Initialize()
 {
-	if (isClear_)
+	if (SceneManager::GetInstance()->GetIsClear())
 	{
-		textureHandleResult_ = TextureManager::Load("result.png");
-		result = Sprite::Create(textureHandleResult_, {600, 50}, {1, 1, 1, 1}, {0.5,0.5});
+		textureHandleResult_ = TextureManager::Load("succeed.png");
+		result = Sprite::Create(textureHandleResult_, {600, 150}, {1, 1, 1, 1}, {0.5,0.5});
 	}
 	else
 	{
-		textureHandleResult_ = TextureManager::Load("result.png");
-		result = Sprite::Create(textureHandleResult_, { 600, 50 }, {1, 1, 1, 1}, {0.5, 0.5});
+		textureHandleResult_ = TextureManager::Load("fail.png");
+		result = Sprite::Create(textureHandleResult_, { 600, 150 }, {1, 1, 1, 1}, {0.5, 0.5});
 	}
 
-	textureHandleTitle_ = TextureManager::Load("title.png");
+	textureHandleTitle_ = TextureManager::Load("toTitle.png");
 	title = Sprite::Create(textureHandleTitle_, posTitle_, {1, 1, 1, 1}, {0.5, 0.5});
 	textureHandleSelect_ = TextureManager::Load("select.png");
 	select = Sprite::Create(textureHandleSelect_, posSelect_, {1, 1, 1, 1}, {0.5, 0.5});
@@ -29,7 +29,7 @@ std::unique_ptr<BaseScene> ResultScene::Update()
 
 #ifdef _DEBUG
 	ImGui::Begin("RESULT");
-	ImGui::Text("isClear: %s", isClear_ ? "true" : "false");
+	ImGui::Text("isClear: %s", SceneManager::GetInstance()->GetIsClear() ? "true" : "false");
 	ImGui::End();
 #endif
 	if (Input::GetInstance()->IsTriggerMouse(0))

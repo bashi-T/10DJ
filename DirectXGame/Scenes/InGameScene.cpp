@@ -18,6 +18,8 @@ void InGameScene::Initialize()
 
 	inGameController_ = new InGameController({(float)KamataEngine::WinApp::kWindowWidth, (float)KamataEngine::WinApp::kWindowHeight});
 	inGameController_->Initialize();
+
+	fade_ = new Fade();
 }
 
 std::unique_ptr<BaseScene> InGameScene::Update()
@@ -27,14 +29,35 @@ std::unique_ptr<BaseScene> InGameScene::Update()
 	}
 	inGameController_->Update();
 
-#ifdef _DEBUG 
+	if (inGameController_->IsGameEndFlag())
+	{
+		if (fade_->GetState() == FadeState::NONE)
+		{
+			fade_->Start(FadeState::FADE_OUT, 0.02f);
+		}
+	}
+
+	fade_->Update();
+
+#ifdef _DEBUG
 	ImGui::Begin("INGAME");
 	ImGui::End();
 #endif
-	return nullptr;
+
+	if (fade_->GetState() == FadeState::NONE && fade_->GetAlpha() >= 1.0f)
+	{
+		if (inGameController_->IsGameClearFlag())
+		{
+			SceneManager::GetInstance()->SetIsClear(inGameController_->IsGameClearFlag());
+		}
+		return std::make_unique<ResultScene>();
+	} else {
+		return nullptr;
+	}
 }
 
 void InGameScene::Draw() 
 {
 	inGameController_->Draw();
+	fade_->Draw();
 }

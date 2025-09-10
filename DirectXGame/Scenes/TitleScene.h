@@ -1,6 +1,6 @@
 #pragma once
 #include "BaseScene.h"
-#include "SelectScene.h"
+#include"SceneManager.h"
 #include "KamataEngine.h"
 #include "Fade.h"
 
