@@ -38,4 +38,3 @@ bool isCollisionToMouse(const KamataEngine::Vector2& mouseSquareLength, const Ka
 bool isCollision(const Sphere& sphere1, const Sphere& sphere2);
 
 
-void PushBack(KamataEngine::Vector2& garbagePos, KamataEngine::Vector2& garbageVector, KamataEngine::Vector2& garbageSize, KamataEngine::Vector2& wallPos, KamataEngine::Vector2& wallSize );

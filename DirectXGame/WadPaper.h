@@ -15,6 +15,7 @@ public:
 
 	bool Collision(const KamataEngine::Vector2& squarePos,const KamataEngine::Vector2& squareScale);
 
+	void PushBack(KamataEngine::Vector2& wallPos, KamataEngine::Vector2& wallSize);
 
 	KamataEngine::Vector2 GetPosition() const { return wadPaper_->GetPosition(); }
 	KamataEngine::Vector2 GetSize() const { return wadPaper_->GetSize(); }

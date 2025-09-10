@@ -60,7 +60,21 @@ void InGameController::Update() {
 
 	trashCan_->Update();
 	grabArea_->Update();
-
+	for (int i = 0; i < numChipY; i++)
+	{
+		for (int j = 0; j < numChipX; j++)
+		{
+			if (stage[0][i][j] == 1)
+			{
+				if (isCollision(wadPaper_->GetPosition(), wadPaper_->GetSize(), { (float)j, (float)i }))
+				{
+					Vector2 chipPos = {(float)chipSize * j, (float)chipSize * i};
+					Vector2 chipsSize = {(float)chipSize, (float)chipSize};
+					wadPaper_->PushBack(chipPos, chipsSize);
+				}
+			}
+		}
+	}
 
 	if (!gameEndFlag_)
 	{

@@ -9,6 +9,8 @@
 #include "Block.h"
 #include "AudioLoader.h"
 #include "GrabArea.h"
+#include "Math/Collision.h"
+#include "Math/StageMapChip.h"
 
 class InGameController {
 public:
