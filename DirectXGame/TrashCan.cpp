@@ -2,11 +2,11 @@
 #include "Math/Collision.h"
 
 
-TrashCan::TrashCan(uint32_t textureHandle)
+TrashCan::TrashCan(uint32_t textureHandle,const KamataEngine::Vector2& pos)
 {
 	textureHandle_ = textureHandle;
 	trashCanSize_ = 100.0f;
-	position_ = { 800.0f,600.0f };
+	position_ = pos;
 }
 
 TrashCan::~TrashCan()

@@ -4,7 +4,7 @@
 class TrashCan
 {
 public:
-	TrashCan(uint32_t textureHandle);
+	TrashCan(uint32_t textureHandle, const KamataEngine::Vector2& pos);
 	~TrashCan();
 
 	void Initialize();

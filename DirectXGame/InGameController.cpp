@@ -13,17 +13,19 @@ InGameController::InGameController(const Vector2 screenSize,int32_t stageNumber)
 	mouthTracker_ = new MouthTracker();
 	audioLoader_ = new AudioLoader();
 	playerCursor_ = new PlayerCursor();
-	trashCan_ = new TrashCan(textureLoader_->GetTrashCanTexture());
+
 	wadPaper_ = new WadPaper(textureLoader_->GetWadPaperTexture(), 15.0f);
 
 	if (stageNumber == 0) {
 		initialPaperPos_ = { 400, 300 };
+		trashCan_ = new TrashCan(textureLoader_->GetTrashCanTexture(), { 800.0f,600.0f });
 		grabArea_ = new GrabArea(textureLoader_->GetGrabAreaTexture(), initialPaperPos_, { 400,400 });
 		portalA_ = new Portal({ 400, 0 }, { 400, screenSize_.y }, { 400, 50 }, textureLoader_->GetPortalTextureHandle());
 		portalB_ = new Portal({ 400, screenSize_.y }, { 400, 0 }, { 400, 50 }, textureLoader_->GetPortalTextureHandle());
 	}
 	else if(stageNumber==1) {
 		initialPaperPos_ = { 200, 600 };
+		trashCan_ = new TrashCan(textureLoader_->GetTrashCanTexture(), { 800.0f,600.0f });
 		grabArea_ = new GrabArea(textureLoader_->GetGrabAreaTexture(), initialPaperPos_, { 100,100 });
 
 		Vector2 portalApos = { 0,300 };
