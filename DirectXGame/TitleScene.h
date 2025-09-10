@@ -9,8 +9,8 @@ public:
     ~TitleScene();
 
     void Initialize();
-    void Update(Fade& fade);
-    void Draw(Fade& fade);
+    void Update();
+    void Draw();
 
 private:
     Sprite* bgSprite_ = nullptr;
@@ -20,4 +20,6 @@ private:
 
     int screenWidth = 1280;
     int screenHeight = 720;
+
+    Fade*fade_=nullptr;
 };

@@ -23,8 +23,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 
     // 最初はタイトルから
     SceneManager::ChangeScene(TITLE);
-    fade.Start(FadeState::FADE_IN, 0.02f);
-
+    
     ImGuiManager* imguiManager = ImGuiManager::GetInstance();
 
     while (true) {
@@ -37,7 +36,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
         // シーンごとにUpdate
         switch (SceneManager::current) {
         case TITLE:
-            titleScene->Update(fade);
+            titleScene->Update();
             break;
         case STAGE_SELECT:
             break;
@@ -51,7 +50,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
         // シーンごとにDraw
         switch (SceneManager::current) {
         case TITLE:
-            titleScene->Draw(fade);
+            titleScene->Draw();
             break;
         case STAGE_SELECT:
             break;

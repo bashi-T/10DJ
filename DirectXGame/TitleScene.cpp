@@ -9,6 +9,7 @@ TitleScene::TitleScene() {}
 TitleScene::~TitleScene() {
     delete bgSprite_;
     delete titleSprite_;
+    delete fade_;
 }
 
 void TitleScene::Initialize() {
@@ -18,25 +19,23 @@ void TitleScene::Initialize() {
 
     bgSprite_ = Sprite::Create(bgHandle_, {1280,720});
     titleSprite_ = Sprite::Create(titleHandle_, { 1280,720 });
+
+    fade_=new Fade();
+    fade_->Initialize();
 }
 
-void TitleScene::Update(Fade& fade) {
+void TitleScene::Update() {
     if (Input::GetInstance()->TriggerKey(DIK_SPACE)) {
-        if (fade.GetState() == FadeState::NONE) {
-            fade.Start(FadeState::FADE_OUT, 0.02f);
-        }
+      
     }
 
-    fade.Update();
+    fade_->Update();
 
-    if (fade.GetState() == FadeState::NONE && fade.GetAlpha() >= 1.0f) {
-        SceneManager::ChangeScene(STAGE_SELECT);
-        fade.Start(FadeState::FADE_IN, 0.02f);
-    }
+    
 }
 
-void TitleScene::Draw(Fade& fade) {
+void TitleScene::Draw() {
     titleSprite_->Draw();
     bgSprite_->Draw();
-    fade.Draw();
+    fade_->Draw();
 }
