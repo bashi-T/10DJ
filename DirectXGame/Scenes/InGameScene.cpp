@@ -17,7 +17,7 @@ void InGameScene::Initialize()
 	worldTransform_.Initialize();
 	camera_.Initialize();
 
-	inGameController_ = new InGameController({(float)KamataEngine::WinApp::kWindowWidth, (float)KamataEngine::WinApp::kWindowHeight});
+	inGameController_ = new InGameController({ (float)KamataEngine::WinApp::kWindowWidth, (float)KamataEngine::WinApp::kWindowHeight }, SceneManager::GetInstance()->GetStageNumber());
 	inGameController_->Initialize();
 
 	fade_ = new Fade();

@@ -4,24 +4,30 @@
 using namespace KamataEngine;
 
 
-InGameController::InGameController(const Vector2 screenSize) {
-
-	initialPaperPos_ = { 400, 300 };
-
+InGameController::InGameController(const Vector2 screenSize,int32_t stageNumber) {
 	ShowCursor(false);
 	screenSize_ = screenSize;
 	screenEdgeOffset_ = 2000.0f;
 	textureLoader_ = new TextureLoader();
 	effectController_ = new EffectController(textureLoader_);
 	mouthTracker_ = new MouthTracker();
-
 	audioLoader_ = new AudioLoader();
 	playerCursor_ = new PlayerCursor();
 	trashCan_ = new TrashCan(textureLoader_->GetTrashCanTexture());
 	wadPaper_ = new WadPaper(textureLoader_->GetWadPaperTexture(), 15.0f);
-	grabArea_ = new GrabArea(textureLoader_->GetGrabAreaTexture(), initialPaperPos_, { 400,400 });
-	portalA_ = new Portal({400, 0}, {400, screenSize_.y}, {400, 50}, textureLoader_->GetPortalTextureHandle());
-	portalB_ = new Portal({400, screenSize_.y}, {400, 0}, {400, 50}, textureLoader_->GetPortalTextureHandle());
+
+	if (stageNumber == 0) {
+		initialPaperPos_ = { 400, 300 };
+		grabArea_ = new GrabArea(textureLoader_->GetGrabAreaTexture(), initialPaperPos_, { 400,400 });
+		portalA_ = new Portal({ 400, 0 }, { 400, screenSize_.y }, { 400, 50 }, textureLoader_->GetPortalTextureHandle());
+		portalB_ = new Portal({ 400, screenSize_.y }, { 400, 0 }, { 400, 50 }, textureLoader_->GetPortalTextureHandle());
+	}
+	else {
+		initialPaperPos_ = { 400, 300 };
+		grabArea_ = new GrabArea(textureLoader_->GetGrabAreaTexture(), initialPaperPos_, { 400,400 });
+		portalA_ = new Portal({ 400, 0 }, { 400, screenSize_.y }, { 400, 50 }, textureLoader_->GetPortalTextureHandle());
+		portalB_ = new Portal({ 400, screenSize_.y }, { 400, 0 }, { 400, 50 }, textureLoader_->GetPortalTextureHandle());
+	}
 }
 
 InGameController::~InGameController() {

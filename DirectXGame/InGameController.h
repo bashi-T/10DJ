@@ -15,7 +15,7 @@
 class InGameController {
 public:
 
-	InGameController(const KamataEngine::Vector2 screenSize);
+	InGameController(const KamataEngine::Vector2 screenSize, int32_t stageNumber);
 	~InGameController();
 
 	void Initialize();
