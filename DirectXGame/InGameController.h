@@ -49,6 +49,7 @@ private:
 
 	KamataEngine::Sprite* backGround_;
 	uint32_t textureHandle_ = 0;
+	uint32_t audioHandle_ = 0;
 
 	float textureScale_ = 50;
 	bool inGame_ = true;

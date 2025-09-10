@@ -6,7 +6,7 @@ using namespace KamataEngine;
 
 InGameController::InGameController(const Vector2 screenSize) {
 
-	initialPaperPos_ = { 400, 300 };
+	initialPaperPos_ = { 200, 600 };
 
 	ShowCursor(false);
 	screenSize_ = screenSize;
@@ -19,9 +19,17 @@ InGameController::InGameController(const Vector2 screenSize) {
 	playerCursor_ = new PlayerCursor();
 	trashCan_ = new TrashCan(textureLoader_->GetTrashCanTexture());
 	wadPaper_ = new WadPaper(textureLoader_->GetWadPaperTexture(), 15.0f);
-	grabArea_ = new GrabArea(textureLoader_->GetGrabAreaTexture(), initialPaperPos_, { 400,400 });
-	portalA_ = new Portal({400, 0}, {400, screenSize_.y}, {400, 50}, textureLoader_->GetPortalTextureHandle());
-	portalB_ = new Portal({400, screenSize_.y}, {400, 0}, {400, 50}, textureLoader_->GetPortalTextureHandle());
+	grabArea_ = new GrabArea(textureLoader_->GetGrabAreaTexture(), initialPaperPos_, { 100,100 });
+
+	Vector2 portalApos = { 0,300 };
+	Vector2 portalASize = { 50,400 };
+	
+	Vector2 portalBpos = { screenSize_.x,400 };
+	Vector2 portalBSize = { 50,400 };
+	portalA_ = new Portal(portalApos, portalBpos, portalASize, textureLoader_->GetPortalTextureHandle());
+	portalB_ = new Portal(portalBpos, portalApos, portalBSize, textureLoader_->GetPortalTextureHandle());
+
+	audioHandle_ = audioLoader_->GetBGM();
 }
 
 InGameController::~InGameController() {
@@ -35,6 +43,7 @@ InGameController::~InGameController() {
 	delete portalB_;
 	delete effectController_;
 	delete backGround_;
+
 }
 
 
@@ -65,14 +74,17 @@ void InGameController::Initialize() {
 	backGround_->SetSize({4000, 4000});
 	backGround_->SetAnchorPoint({0.5f, 0.5f});
 
-	Audio::GetInstance()->PlayWave(audioLoader_->GetBGM());
+
+	
 	
 }
 
 
 void InGameController::Update() {
-
 	playerCursor_->Update();
+	
+
+
 	if (!gameEndFlag_)
 	{ 
 		wadPaper_->Update(isCanGrab_); 
@@ -100,7 +112,8 @@ void InGameController::Update() {
 		}
 		Warp();
 	}
-	
+
+
 
 
 #ifdef _DEBUG

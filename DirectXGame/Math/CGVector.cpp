@@ -110,7 +110,7 @@ Vector2 Transform(Vector2 vector, Matrix3x3 matrix)
 	result.x = vector.x * matrix.m[0][0] + vector.y * matrix.m[1][0] + 1.0f * matrix.m[2][0];
 	result.y = vector.x * matrix.m[0][1] + vector.y * matrix.m[1][1] + 1.0f * matrix.m[2][1];
 	float w = vector.x * matrix.m[0][2] + vector.y * matrix.m[1][2] + 1.0f * matrix.m[2][2];
-	assert(w != 0.0f);
+	//assert(w != 0.0f);
 	result.x /= w;
 	result.y /= w;
 	return result;
@@ -591,7 +591,7 @@ Vector3 Transform(const Vector3& vector, const Matrix4x4& matrix)
 	           1.0f * matrix.m[3][2];
 	float w = vector.x * matrix.m[0][3] + vector.y * matrix.m[1][3] + vector.z * matrix.m[2][3] +
 	          1.0f * matrix.m[3][3];
-	assert(w != 0.0f);
+	//assert(w != 0.0f);
 	result.x /= w;
 	result.y /= w;
 	result.z /= w;

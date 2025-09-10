@@ -6,7 +6,7 @@ TrashCan::TrashCan(uint32_t textureHandle)
 {
 	textureHandle_ = textureHandle;
 	trashCanSize_ = 100.0f;
-	position_ = { 800.0f,600.0f };
+	position_ = { 1000.0f,500.0f };
 }
 
 TrashCan::~TrashCan()
