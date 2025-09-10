@@ -25,7 +25,7 @@ InGameController::InGameController(const Vector2 screenSize,int32_t stageNumber)
 	}
 	else if(stageNumber==1) {
 		initialPaperPos_ = { 200, 600 };
-		trashCan_ = new TrashCan(textureLoader_->GetTrashCanTexture(), { 800.0f,600.0f });
+		trashCan_ = new TrashCan(textureLoader_->GetTrashCanTexture(), { 1000.0f,500.0f });
 		grabArea_ = new GrabArea(textureLoader_->GetGrabAreaTexture(), initialPaperPos_, { 100,100 });
 
 		Vector2 portalApos = { 0,300 };
