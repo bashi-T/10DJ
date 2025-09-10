@@ -21,6 +21,7 @@ void InGameScene::Initialize()
 	inGameController_->Initialize();
 
 	fade_ = new Fade();
+	SceneManager::GetInstance()->SetIsClear(false);
 }
 
 std::unique_ptr<BaseScene> InGameScene::Update()
