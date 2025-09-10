@@ -49,7 +49,7 @@ void GameScene::Update()
 void GameScene::Draw() 
 {
 	Model::PreDraw();
-	model_->Draw(worldTransform_, debugCamera_->GetCamera(), textureHandle_);
+	//model_->Draw(worldTransform_, debugCamera_->GetCamera(), textureHandle_);
 	Model::PostDraw();
 
 	Sprite::PreDraw();
