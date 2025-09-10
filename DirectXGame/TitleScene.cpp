@@ -16,17 +16,18 @@ void TitleScene::Initialize() {
 
     bgHandle_ = TextureManager::Load("Titlebg.png");
     titleHandle_ = TextureManager::Load("Title.png");
-
-    bgSprite_ = Sprite::Create(bgHandle_, {1280,720});
-    titleSprite_ = Sprite::Create(titleHandle_, { 1280,720 });
+    Vector2 position={0,0};
+    bgSprite_ = Sprite::Create(bgHandle_,position);
+    titleSprite_ = Sprite::Create(titleHandle_,{-100,-150});
 
     fade_=new Fade();
     fade_->Initialize();
+    fade_->Start(Fade::Status::FadeIn,1);
 }
 
 void TitleScene::Update() {
     if (Input::GetInstance()->TriggerKey(DIK_SPACE)) {
-      
+      fade_->Start(Fade::Status::FadeOut,1);
     }
 
     fade_->Update();
@@ -35,7 +36,9 @@ void TitleScene::Update() {
 }
 
 void TitleScene::Draw() {
-    titleSprite_->Draw();
+    Sprite::PreDraw();
     bgSprite_->Draw();
+    titleSprite_->Draw();
     fade_->Draw();
+    Sprite::PostDraw();
 }

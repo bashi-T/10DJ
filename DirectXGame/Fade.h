@@ -2,20 +2,37 @@
 #include "KamataEngine.h"
 using namespace KamataEngine;
 
-enum class FadeState {
-    NONE,
-    FADE_IN,
-    FADE_OUT
-};
+
+
 
 class Fade {
 public:
+    ~Fade();
      void Initialize();
     void Update();
     void Draw();
 
+    enum class Status {
+    None,
+    FadeIn,
+    FadeOut
+    };
+
+    void Start(Status status,float duration);
+
+    void Stop();
+
+    bool IsFinishd() const;
+
 private:
 
     Sprite*sprite_=nullptr;
+
+    Status status_=Status::None;
+
+    float duration_=0.0f;
+    float counter_=0.0f;
+
+    
 };
 
