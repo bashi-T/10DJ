@@ -10,6 +10,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int)
 	DirectXCommon* dxCommon = DirectXCommon::GetInstance();
 	GameScene* gameScene = new GameScene;
 
+
 	Initialize(L"Boundrick");
 	gameScene->Initialize();
 	ImGuiManager* imguiManager = ImGuiManager::GetInstance();
@@ -23,14 +24,14 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int)
 		imguiManager->Begin();
 
 		gameScene->Update();
-
+		
 		imguiManager->End();
 
 		//描画開始
 		dxCommon->PreDraw();
 
 		gameScene->Draw();
-	
+		
 		imguiManager->Draw();
 
 		//描画終了

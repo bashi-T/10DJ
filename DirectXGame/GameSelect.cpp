@@ -1,10 +1,12 @@
-#include "SelectScene.h"
+#include "GameSelect.h"
+#include"input/Input.h"
 
-SelectScene::SelectScene()
+
+GameSelect::GameSelect()
 {
 }
 
-SelectScene::~SelectScene()
+GameSelect::~GameSelect()
 {
 	for(int i = 0; i < kStageCount; i++) {
 	delete sprites_[i];
@@ -12,8 +14,9 @@ SelectScene::~SelectScene()
 	delete debugCamera_;
 }
 
-void SelectScene::Initialize() {
-// カメラの初期化
+void GameSelect::Initialize()
+{
+	// カメラの初期化
 	camera_.Initialize();
 	debugCamera_ = new DebugCamera(screenWidth, screenHeight);
 
@@ -42,16 +45,15 @@ void SelectScene::Initialize() {
 		}
 		
         sprites_[i] = Sprite::Create(textureHandles_[i], position);
-        sprites_[i]->SetAnchorPoint({0.5f, 0.5f});
-
         baseSpriteSize_[i] = sprites_[i]->GetSize();  // 元サイズを保存
 	}
 
+
 }
 
-std::unique_ptr<BaseScene> SelectScene::Update()
+void GameSelect::Update()
 {
-	debugCamera_->Update();
+    debugCamera_->Update();
     Input* input = Input::GetInstance();
 
    
@@ -100,34 +102,21 @@ std::unique_ptr<BaseScene> SelectScene::Update()
         }
     }
 
-      // 左クリックで遷移処理
+    //左クリックで曲停止
     if (input->IsTriggerMouse(0)) {
-        if (hoveredSprite_ == 0) {
-            Audio::GetInstance()->StopWave(soundDataHandle_);
-            return std::make_unique<TitleScene>();
-        }
-        else if (hoveredSprite_ == 1) {
-            Audio::GetInstance()->StopWave(soundDataHandle_);
-            return std::make_unique<InGameScene>();
-        }
-        else if (hoveredSprite_ == 2) {
-            Audio::GetInstance()->StopWave(soundDataHandle_);
-            return std::make_unique<InGameScene>();
-        }
+    Audio::GetInstance()->StopWave(soundDataHandle_);
+}
 }
 
-#ifdef _DEBUG 
-	ImGui::Begin("SELECT");
-	ImGui::End();
-#endif
-	return nullptr;
-}
+	
 
-void SelectScene::Draw() {
+void GameSelect::Draw()
+{
 	Sprite::PreDraw();
 
 	for(int i = 0; i < kStageCount; i++) {
 	    sprites_[i]->Draw();
 	}
 
-	Sprite::PostDraw();}
+	Sprite::PostDraw();
+}

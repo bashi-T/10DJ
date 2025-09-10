@@ -1,21 +1,16 @@
 #pragma once
-#include "BaseScene.h"
-#include"SceneManager.h"
 #include "KamataEngine.h"
-#include"input/Input.h"
-#include <3d/WorldTransform.h>
 using namespace KamataEngine; 
 
-class SelectScene : public BaseScene
+class GameSelect
 {
+
 public:
-	SelectScene();
-	~SelectScene();
+	GameSelect();
+	~GameSelect();
 
 	void Initialize();
-
-	std::unique_ptr<BaseScene> Update();
-
+	void Update();
 	void Draw();
 
 private:
@@ -41,3 +36,4 @@ private:
     float animationTimer_ = 0.0f;
 	Vector2 baseSpriteSize_[kStageCount];
 };
+

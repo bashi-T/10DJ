@@ -1,10 +1,9 @@
 #pragma once
+#include "BaseScene.h"
 #include "KamataEngine.h"
-#include"BaseScene.h"
-#include"SceneManager.h"
+#include "SceneManager.h"
 
-class GameScene
-{
+class GameScene {
 public:
 	GameScene();
 	~GameScene();
@@ -12,7 +11,6 @@ public:
 	void Initialize();
 	void Update();
 	void Draw();
-
 
 private:
 	KamataEngine::Model* model_ = nullptr;

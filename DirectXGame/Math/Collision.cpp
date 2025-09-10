@@ -23,7 +23,7 @@ bool isCollision(const AABB& aabb1, const AABB& aabb2)
 	{
 		return true;
 	}
-	else
+	else 
 	{
 		return false;
 	}
