@@ -13,6 +13,7 @@ SelectScene::~SelectScene()
 }
 
 void SelectScene::Initialize() {
+
 // カメラの初期化
 	camera_.Initialize();
 	debugCamera_ = new DebugCamera(screenWidth, screenHeight);
@@ -25,6 +26,11 @@ void SelectScene::Initialize() {
 	textureHandles_[1]=TextureManager::Load("Stage1.png");
 	textureHandles_[2]=TextureManager::Load("Stage2.png");
 	
+    backGroundTextureHandle_ = TextureManager::Load("backGround.png");
+    backGround_ = Sprite::Create(backGroundTextureHandle_, { 640,360 });
+    backGround_->SetAnchorPoint({ 0.5f,0.5f });
+    backGround_->SetSize({ 2000,1000 });
+
 	for (int i = 0; i < kStageCount; i++) {
 		Vector2 position={0,0};
 
@@ -51,6 +57,7 @@ void SelectScene::Initialize() {
 
 std::unique_ptr<BaseScene> SelectScene::Update()
 {
+    ShowCursor(true);
 	debugCamera_->Update();
     Input* input = Input::GetInstance();
 
@@ -125,6 +132,7 @@ std::unique_ptr<BaseScene> SelectScene::Update()
 
 void SelectScene::Draw() {
 	Sprite::PreDraw();
+    backGround_->Draw();
 
 	for(int i = 0; i < kStageCount; i++) {
 	    sprites_[i]->Draw();

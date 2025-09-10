@@ -13,6 +13,7 @@ InGameScene::~InGameScene()
 
 void InGameScene::Initialize() 
 {
+	ShowCursor(false);
 	worldTransform_.Initialize();
 	camera_.Initialize();
 
@@ -24,6 +25,7 @@ void InGameScene::Initialize()
 
 std::unique_ptr<BaseScene> InGameScene::Update()
 {
+	ShowCursor(false);
 	if (Input::GetInstance()->TriggerKey(DIK_0)) {
 		inGameController_->Initialize();
 	}

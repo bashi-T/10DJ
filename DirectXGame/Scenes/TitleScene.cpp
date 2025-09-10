@@ -12,6 +12,7 @@ TitleScene::~TitleScene() {
 void TitleScene::Initialize()
 {
 
+
 	fade_ = new Fade();
 	bgHandle_ = TextureManager::Load("Titlebg.png");
 	titleHandle_ = TextureManager::Load("Title.png");
@@ -26,6 +27,7 @@ void TitleScene::Initialize()
 
 std::unique_ptr<BaseScene> TitleScene::Update()
 {
+	ShowCursor(true);
 
 	if (Input::GetInstance()->IsTriggerMouse(0))
 	{
