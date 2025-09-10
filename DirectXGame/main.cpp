@@ -1,7 +1,5 @@
 #include <Windows.h>
 #include "KamataEngine.h"
-#include "GameScene.h"
-#include "GameSelect.h"
 #include "Scenes/GameScene.h"
 
 using namespace KamataEngine;
@@ -11,12 +9,10 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int)
 {
 	DirectXCommon* dxCommon = DirectXCommon::GetInstance();
 	GameScene* gameScene = new GameScene;
-	GameSelect* gameSelect = new GameSelect;
 
 
 	Initialize(L"Boundrick");
 	gameScene->Initialize();
-	gameSelect->Initialize();
 	ImGuiManager* imguiManager = ImGuiManager::GetInstance();
 	while (true)
 	{
@@ -27,17 +23,15 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int)
 
 		imguiManager->Begin();
 
-		//gameScene->Update();
-		gameSelect->Update();
-
+		gameScene->Update();
+		
 		imguiManager->End();
 
 		//描画開始
 		dxCommon->PreDraw();
 
-		//gameScene->Draw();
-		gameSelect->Draw();
-	
+		gameScene->Draw();
+		
 		imguiManager->Draw();
 
 		//描画終了

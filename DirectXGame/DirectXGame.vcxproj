@@ -161,7 +161,6 @@
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="GrabArea.cpp" />
     <ClCompile Include="InGameController.cpp" />
-    <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="GameSelect.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Math\CGVector.cpp" />
@@ -283,7 +282,6 @@
     <ClInclude Include="Block.h" />
     <ClInclude Include="GrabArea.h" />
     <ClInclude Include="InGameController.h" />
-    <ClInclude Include="GameScene.h" />
     <ClInclude Include="GameSelect.h" />
     <ClInclude Include="Math\CGVector.h" />
     <ClInclude Include="Math\Collision.h" />
