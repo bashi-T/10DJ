@@ -36,5 +36,3 @@ bool isCollisionToMouse(const KamataEngine::Vector2& mouseSquareLength, const Ka
 //}
 
 bool isCollision(const Sphere& sphere1, const Sphere& sphere2);
-
-

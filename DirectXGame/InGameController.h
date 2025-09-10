@@ -42,6 +42,7 @@ private:
 	KamataEngine::Vector2 screenSize_{};
 	float screenEdgeOffset_ = 0.0f;
 	GrabArea* grabArea_ = nullptr;
+	std::list<Block*> blocks_;
 
 	float textureScale_ = 50;
 	bool inGame_ = true;

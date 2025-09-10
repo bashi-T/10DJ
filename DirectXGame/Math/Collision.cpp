@@ -126,7 +126,3 @@ bool isCollision(const Sphere& sphere1, const Sphere& sphere2)
 		return false;
 	}
 }
-
-void PushBack(KamataEngine::Vector2& garbagePos, KamataEngine::Vector2& garbageVector, KamataEngine::Vector2& garbageSize, KamataEngine::Vector2& wallPos, KamataEngine::Vector2& wallSize)
-{
-}

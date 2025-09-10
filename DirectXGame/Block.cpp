@@ -22,7 +22,7 @@ void Block::Initialize(Vector2 position)
 
 void Block::Update()
 {
-	block_->Draw();
+	//block_->Update();
 }
 
 void Block::Draw()

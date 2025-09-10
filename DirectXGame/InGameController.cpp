@@ -27,6 +27,7 @@ InGameController::~InGameController() {
 	delete trashCan_;
 	delete audioLoader_;
 	delete grabArea_;
+	blocks_.clear();
 }
 
 
@@ -47,26 +48,31 @@ void InGameController::Initialize() {
 	
 	trashCan_->Initialize();
 	grabArea_->Initialize();
+	for (int i = 0; i < numChipY; i++) 
+	{
+		for (int j = 0; j < numChipX; j++) 
+		{
+			if (stage[0][i][j] == 1) 
+			{
+				Block* block_ = new Block(textureLoader_->GetBlockTexture(), 36.0f);
+				block_->Initialize({(float)chipSize * j, (float)chipSize * i});
+				blocks_.push_back(block_);
+			}
+		}
+	}
 }
 
 
-void InGameController::Update() {
+void InGameController::Update() 
+{
 
-	playerCursor_->Update();
-	if (!gameEndFlag_)
-	{ 
-		wadPaper_->Update(isCanGrab_); 
-	}
-
-	trashCan_->Update();
-	grabArea_->Update();
 	for (int i = 0; i < numChipY; i++)
 	{
 		for (int j = 0; j < numChipX; j++)
 		{
 			if (stage[0][i][j] == 1)
 			{
-				if (isCollision(wadPaper_->GetPosition(), wadPaper_->GetSize(), { (float)j, (float)i }))
+				if (isCollision(wadPaper_->GetPosition(), wadPaper_->GetSize(), {(float)j, (float)i}))
 				{
 					Vector2 chipPos = {(float)chipSize * j, (float)chipSize * i};
 					Vector2 chipsSize = {(float)chipSize, (float)chipSize};
@@ -75,6 +81,22 @@ void InGameController::Update() {
 			}
 		}
 	}
+
+	playerCursor_->Update();
+	if (!gameEndFlag_)
+	if (!gameEndFlag_)
+	{ 
+		wadPaper_->Update(isCanGrab_); 
+	}
+
+	trashCan_->Update();
+	grabArea_->Update();
+
+	for (const auto& block : blocks_)
+	{
+		block->Update();
+	}
+
 
 	if (!gameEndFlag_)
 	{
@@ -94,7 +116,7 @@ void InGameController::Update() {
 
 
 #ifdef _DEBUG
-	ImGui::Begin("Debug2");
+	ImGui::Begin("INGAME");
 	ImGui::Text("clearFlag %d", (int)clearFlag_);
 	ImGui::Text("life %d", (int)life_);
 	ImGui::End();
@@ -121,6 +143,10 @@ void InGameController::Draw() {
 
 	playerCursor_->Draw();
 
+	for (const auto& block : blocks_)
+	{
+		block->Draw();
+	}
 
 	Sprite::PostDraw();
 }

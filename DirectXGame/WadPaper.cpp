@@ -89,30 +89,36 @@ bool WadPaper::Collision(const KamataEngine::Vector2& squarePos,const KamataEngi
 
 void WadPaper::PushBack(KamataEngine::Vector2& wallPos, KamataEngine::Vector2& wallSize)
 {
-	if (wadPaper_->GetPosition().x - wallPos.x < (paperSize_ + wallSize.x) / 2 &&
-		wallPos.x + wallSize.x / 2 < wadPaper_->GetPosition().x &&
-	    wallPos.x - wallSize.x / 2 > wadPaper_->GetPosition().x)
-	{ // ごみと壁が接触判定中かつごみの中心のxが壁の外側にあるとき(上下から接触されていないとき)
-		moveVelocity_.x *= -1;
+	if (wadPaper_->GetPosition().x - wallPos.x < (paperSize_ + wallSize.x) / 2)
+	{//ごみと壁が接触判定中
+		if (wallPos.x + wallSize.x / 2 < wadPaper_->GetPosition().x || wallPos.x - wallSize.x / 2 > wadPaper_->GetPosition().x)
+		{ // かつごみの中心のxが壁の外側にあるとき(上下から接触されていないとき)
+			moveVelocity_.x *= -1.0f;
+		}
 	}
-	else if (wallPos.x - wadPaper_->GetPosition().x < (paperSize_ + wallSize.x) / 2 && 
-			 wallPos.x + wallSize.x / 2 < wadPaper_->GetPosition().x &&
-			 wallPos.x - wallSize.x / 2 > wadPaper_->GetPosition().x)
-	{
-		moveVelocity_.x *= -1;
+	else 
+	if (wallPos.x - wadPaper_->GetPosition().x < (paperSize_ + wallSize.x) / 2)
+	{//ごみと壁が接触判定中
+		if (wallPos.x + wallSize.x / 2 < wadPaper_->GetPosition().x || wallPos.x - wallSize.x / 2 > wadPaper_->GetPosition().x)
+		{ // かつごみの中心のxが壁の外側にあるとき(上下から接触されていないとき)
+			moveVelocity_.x *= -1.0f;
+		}
 	}
 
-	if (wadPaper_->GetPosition().y - wallPos.y < (paperSize_ + wallSize.y) / 2 &&
-		wallPos.y + wallSize.y / 2 < wadPaper_->GetPosition().y &&
-	    wallPos.y - wallSize.y / 2 > wadPaper_->GetPosition().y)
-	{ // ごみと壁が接触判定中かつごみの中心のyが壁の外側にあるとき(上下から接触されていないとき)
-		moveVelocity_.y *= -1;
+	if (wadPaper_->GetPosition().y - wallPos.y < (paperSize_ + wallSize.y) / 2)
+	{//ごみと壁が接触判定中
+		if (wallPos.y + wallSize.y / 2 < wadPaper_->GetPosition().y || wallPos.y - wallSize.y / 2 > wadPaper_->GetPosition().y)
+		{ // かつごみの中心のyが壁の外側にあるとき(左右から接触されていないとき)
+			moveVelocity_.y *= -1.0f;
+		}
 	}
-	else if (wallPos.y - wadPaper_->GetPosition().y < (paperSize_ + wallSize.y) / 2 &&
-			 wallPos.y + wallSize.y / 2 < wadPaper_->GetPosition().y && 
-			 wallPos.y - wallSize.y / 2 > wadPaper_->GetPosition().y)
-	{
-		moveVelocity_.y *= -1;
+	else 
+	if (wallPos.y - wadPaper_->GetPosition().y < (paperSize_ + wallSize.y) / 2)
+	{//ごみと壁が接触判定中
+		if (wallPos.y + wallSize.y / 2 < wadPaper_->GetPosition().y || wallPos.y - wallSize.y / 2 > wadPaper_->GetPosition().y)
+		{ // かつごみの中心のyが壁の外側にあるとき(左右から接触されていないとき)
+			moveVelocity_.y *= -1.0f;
+		}
 	}
 }
 

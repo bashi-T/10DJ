@@ -40,7 +40,7 @@ void GameScene::Update()
 	sprite_->SetPosition(mousePos);
 
 #ifdef _DEBUG
-	ImGui::Begin("DEBUG1");
+	ImGui::Begin("INGAME");
 	ImGui::Text("mousePos %f,%f", mousePos.x, mousePos.y);
 	ImGui::End();
 #endif
@@ -49,7 +49,7 @@ void GameScene::Update()
 void GameScene::Draw() 
 {
 	Model::PreDraw();
-	model_->Draw(worldTransform_, debugCamera_->GetCamera(), textureHandle_);
+	//model_->Draw(worldTransform_, debugCamera_->GetCamera(), textureHandle_);
 	Model::PostDraw();
 
 	Sprite::PreDraw();
