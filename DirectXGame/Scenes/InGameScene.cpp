@@ -1,9 +1,32 @@
 #include "InGameScene.h"
+#include "Math\CGVector.h"
 
-void InGameScene::Initialize() {}
+using namespace KamataEngine;
+
+InGameScene::InGameScene() {}
+
+InGameScene::~InGameScene() 
+{
+
+	delete inGameController_;
+}
+
+void InGameScene::Initialize() 
+{
+	worldTransform_.Initialize();
+	camera_.Initialize();
+
+	inGameController_ = new InGameController({(float)KamataEngine::WinApp::kWindowWidth, (float)KamataEngine::WinApp::kWindowHeight});
+	inGameController_->Initialize();
+}
 
 std::unique_ptr<BaseScene> InGameScene::Update()
 {
+	if (Input::GetInstance()->TriggerKey(DIK_0)) {
+		inGameController_->Initialize();
+	}
+	inGameController_->Update();
+
 #ifdef _DEBUG 
 	ImGui::Begin("INGAME");
 	ImGui::End();
@@ -11,4 +34,7 @@ std::unique_ptr<BaseScene> InGameScene::Update()
 	return nullptr;
 }
 
-void InGameScene::Draw() {}
+void InGameScene::Draw() 
+{
+	inGameController_->Draw();
+}
