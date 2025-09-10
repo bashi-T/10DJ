@@ -36,7 +36,7 @@ void TitleScene::Update(Fade& fade) {
 }
 
 void TitleScene::Draw(Fade& fade) {
-    bgSprite_->Draw();
     titleSprite_->Draw();
+    bgSprite_->Draw();
     fade.Draw();
 }

@@ -1,5 +1,6 @@
 #pragma once
-#include <d3d12.h>
+#include "KamataEngine.h"
+using namespace KamataEngine;
 
 enum class FadeState {
     NONE,
@@ -8,18 +9,13 @@ enum class FadeState {
 };
 
 class Fade {
-private:
-    FadeState state;
-    float alpha;
-    float speed;
-
 public:
-    Fade();
-    void Start(FadeState fadeType, float fadeSpeed);
+     void Initialize();
     void Update();
-    void Draw(); // KamataEngine なら Sprite で黒四角を描画してもOK
+    void Draw();
 
-    bool IsFinished() const;
-    float GetAlpha() const { return alpha; }
-    FadeState GetState() const { return state; }
+private:
+
+    Sprite*sprite_=nullptr;
 };
+
