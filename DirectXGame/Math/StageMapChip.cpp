@@ -3,7 +3,7 @@
 int stageNum = 4;
 int chipSize = 36;
 int numChipY, numChipX;
-int Stage[5][20][20]
+int Stage[4][20][20]
 {
     {
         {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
