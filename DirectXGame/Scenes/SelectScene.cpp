@@ -42,6 +42,8 @@ void SelectScene::Initialize() {
 		}
 		
         sprites_[i] = Sprite::Create(textureHandles_[i], position);
+        sprites_[i]->SetAnchorPoint({0.5f, 0.5f});
+
         baseSpriteSize_[i] = sprites_[i]->GetSize();  // 元サイズを保存
 	}
 
