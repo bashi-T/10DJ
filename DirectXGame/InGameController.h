@@ -9,6 +9,7 @@
 #include "Block.h"
 #include "AudioLoader.h"
 #include "GrabArea.h"
+#include "Portal.h"
 
 class InGameController {
 public:
@@ -28,6 +29,7 @@ private:
 	void IsClear();
 	void ScreenOutSide();
 	void GameOver();
+	void Warp();
 
 	MouthTracker* mouthTracker_ = nullptr;
 	KamataEngine::Sprite* testBox_ = nullptr;
@@ -40,6 +42,8 @@ private:
 	KamataEngine::Vector2 screenSize_{};
 	float screenEdgeOffset_ = 0.0f;
 	GrabArea* grabArea_ = nullptr;
+	Portal* portalA_ = nullptr;
+	Portal* portalB_ = nullptr;
 
 	float textureScale_ = 50;
 	bool inGame_ = true;

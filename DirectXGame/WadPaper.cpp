@@ -24,6 +24,7 @@ void WadPaper::Initialize(const Vector2 position,const PlayerCursor& playerCurso
 	isGrabed_ = false;
 	lifeTime_ = 5.0f;
 	isLife_ = true;
+	warping_ = false;
 }
 
 void WadPaper::Update(bool isGrab) {
@@ -62,7 +63,7 @@ void WadPaper::Update(bool isGrab) {
 	CountDownLifeTime();
 
 #ifdef _DEBUG
-	ImGui::Begin("Debug2");
+	ImGui::Begin("INGAME");
 	ImGui::Text("PaperPos %d,%d", (int)wadPaper_->GetPosition().x, (int)wadPaper_->GetPosition().y);
 
 	ImGui::End();

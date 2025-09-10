@@ -19,7 +19,9 @@ public:
 	KamataEngine::Vector2 GetPosition() const { return wadPaper_->GetPosition(); }
 	KamataEngine::Vector2 GetSize() const { return wadPaper_->GetSize(); }
 	bool GetIsLife() const { return isLife_; }
-	bool SetIsLife(bool life) { return isLife_ = life; }
+    void SetIsLife(bool life) { isLife_ = life; }
+	bool GetWarping() { return warping_; }
+	void SetWarping(bool warping) { warping_ = warping; }
 
 private:
 
@@ -47,4 +49,6 @@ private:
 	bool isLife_ = true;
 	std::chrono::time_point<std::chrono::high_resolution_clock> startTime_ = {};
 	std::chrono::time_point<std::chrono::high_resolution_clock> time_ = {};
+
+	bool warping_ = false;
 };

@@ -10,7 +10,7 @@ InGameController::InGameController(const Vector2 screenSize) {
 
 	ShowCursor(false);
 	screenSize_ = screenSize;
-	screenEdgeOffset_ = 200.0f;
+	screenEdgeOffset_ = 2000.0f;
 	mouthTracker_ = new MouthTracker();
 	textureLoader_ = new TextureLoader();
 	audioLoader_ = new AudioLoader();
@@ -18,6 +18,8 @@ InGameController::InGameController(const Vector2 screenSize) {
 	trashCan_ = new TrashCan(textureLoader_->GetTrashCanTexture());
 	wadPaper_ = new WadPaper(textureLoader_->GetWadPaperTexture(), 15.0f);
 	grabArea_ = new GrabArea(textureLoader_->GetGrabAreaTexture(), initialPaperPos_, { 400,400 });
+	portalA_ = new Portal({400, 0}, {400, screenSize_.y}, {400, 100}, textureLoader_->GetPortalTextureHandle());
+	portalB_ = new Portal({400, screenSize_.y}, {400, 0}, {400, 100}, textureLoader_->GetPortalTextureHandle());
 }
 
 InGameController::~InGameController() {
@@ -27,6 +29,8 @@ InGameController::~InGameController() {
 	delete trashCan_;
 	delete audioLoader_;
 	delete grabArea_;
+	delete portalA_;
+	delete portalB_;
 }
 
 
@@ -47,6 +51,10 @@ void InGameController::Initialize() {
 	
 	trashCan_->Initialize();
 	grabArea_->Initialize();
+
+	portalA_->Initialize();
+	portalB_->Initialize();
+
 }
 
 
@@ -60,6 +68,8 @@ void InGameController::Update() {
 
 	trashCan_->Update();
 	grabArea_->Update();
+	portalA_->Update();
+	portalB_->Update();
 
 
 	if (!gameEndFlag_)
@@ -76,6 +86,7 @@ void InGameController::Update() {
 		{
 			isCanGrab_ = false;
 		}
+		Warp();
 	}
 
 
@@ -103,6 +114,10 @@ void InGameController::Draw() {
 	{ 
 		wadPaper_->Draw();
 	}
+
+	portalA_->Draw();
+	portalB_->Draw();
+
 	trashCan_->Draw();
 
 	playerCursor_->Draw();
@@ -167,6 +182,31 @@ void InGameController::GameOver()
 		gameEndFlag_ = true;
 		//wadPaper_->~WadPaper();
 		
+	}
+
+}
+
+void InGameController::Warp() 
+{
+	bool warpA=portalA_->Collision(wadPaper_->GetPosition(),wadPaper_->GetSize());
+	bool warpB=portalB_->Collision(wadPaper_->GetPosition(),wadPaper_->GetSize());
+
+	if (!warpA && !warpB) {
+		wadPaper_->SetWarping(false);
+	}
+	if ( wadPaper_->GetWarping()==true) {
+		return;
+	}
+
+	if (warpA) 
+	{
+		wadPaper_->SetPosition({wadPaper_->GetPosition().x - portalA_->GetDistance().x, wadPaper_->GetPosition().y - portalA_->GetDistance().y});
+		wadPaper_->SetWarping(true);
+	}
+	if (warpB) 
+	{
+		wadPaper_->SetPosition({wadPaper_->GetPosition().x - portalB_->GetDistance().x, wadPaper_->GetPosition().y - portalB_->GetDistance().y});
+		wadPaper_->SetWarping(true);
 	}
 
 }

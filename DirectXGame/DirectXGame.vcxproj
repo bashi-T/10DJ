@@ -156,6 +156,8 @@
   <ItemGroup>
     <ClCompile Include="AudioLoader.cpp" />
     <ClCompile Include="Block.cpp" />
+    <ClCompile Include="Confetti.cpp" />
+    <ClCompile Include="EffectController.cpp" />
     <ClCompile Include="GrabArea.cpp" />
     <ClCompile Include="InGameController.cpp" />
     <ClCompile Include="main.cpp" />
@@ -276,6 +278,8 @@
   <ItemGroup>
     <ClInclude Include="AudioLoader.h" />
     <ClInclude Include="Block.h" />
+    <ClInclude Include="Confetti.h" />
+    <ClInclude Include="EffectController.h" />
     <ClInclude Include="GrabArea.h" />
     <ClInclude Include="InGameController.h" />
     <ClInclude Include="Math\CGVector.h" />

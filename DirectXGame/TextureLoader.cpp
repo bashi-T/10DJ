@@ -9,4 +9,5 @@ TextureLoader::TextureLoader()
 	trashCanTextureHandle_ = TextureManager::Load("trashCan.png");
 	blockTextureHandle_ = TextureManager::Load("block.png");
 	grabAreaTextureHandle_ = TextureManager::Load("grabArea.png");
+	portalTextureHandle_ = TextureManager::Load("uvChecker.png");
 }
