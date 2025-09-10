@@ -10,6 +10,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 
 
 	Initialize(L"Boundrick");
+	GameScene* gameScene = new GameScene;
 	gameScene->Initialize();
 	ImGuiManager* imguiManager = ImGuiManager::GetInstance();
 	while (true)
@@ -37,7 +38,6 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
     }
 
     // メモリ解放
-    delete titleScene;
     delete gameScene;
 
     Finalize();
