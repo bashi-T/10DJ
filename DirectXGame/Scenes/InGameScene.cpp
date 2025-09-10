@@ -15,7 +15,7 @@ void InGameScene::Initialize()
 {
 	worldTransform_.Initialize();
 	camera_.Initialize();
-
+	SceneManager::GetInstance()->SetIsClear(false);
 	inGameController_ = new InGameController({(float)KamataEngine::WinApp::kWindowWidth, (float)KamataEngine::WinApp::kWindowHeight});
 	inGameController_->Initialize();
 
