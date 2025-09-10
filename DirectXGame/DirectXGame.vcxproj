@@ -166,6 +166,12 @@
     <ClCompile Include="MouthTracker.cpp" />
     <ClCompile Include="PlayerCursor.cpp" />
     <ClCompile Include="Portal.cpp" />
+    <ClCompile Include="Scenes\GameScene.cpp" />
+    <ClCompile Include="Scenes\InGameScene.cpp" />
+    <ClCompile Include="Scenes\ResultScene.cpp" />
+    <ClCompile Include="Scenes\SceneManager.cpp" />
+    <ClCompile Include="Scenes\SelectScene.cpp" />
+    <ClCompile Include="Scenes\TitleScene.cpp" />
     <ClCompile Include="testDebug.cpp" />
     <ClCompile Include="TextureLoader.cpp" />
     <ClCompile Include="TrashCan.cpp" />
@@ -280,6 +286,13 @@
     <ClInclude Include="MouthTracker.h" />
     <ClInclude Include="PlayerCursor.h" />
     <ClInclude Include="Portal.h" />
+    <ClInclude Include="Scenes\BaseScene.h" />
+    <ClInclude Include="Scenes\GameScene.h" />
+    <ClInclude Include="Scenes\InGameScene.h" />
+    <ClInclude Include="Scenes\ResultScene.h" />
+    <ClInclude Include="Scenes\SceneManager.h" />
+    <ClInclude Include="Scenes\SelectScene.h" />
+    <ClInclude Include="Scenes\TitleScene.h" />
     <ClInclude Include="testDebug.h" />
     <ClInclude Include="TextureLoader.h" />
     <ClInclude Include="TrashCan.h" />
