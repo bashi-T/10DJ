@@ -15,10 +15,12 @@ bool isCollision(const KamataEngine::Vector2& square1, const KamataEngine::Vecto
 	}
 }
 
-bool isCollision(const AABB& aabb1, const AABB& aabb2) {
+bool isCollision(const AABB& aabb1, const AABB& aabb2)
+{
 	if ((aabb1.min.x <= aabb2.max.x) && (aabb1.max.x >= aabb2.min.x) &&
 		(aabb1.min.y <= aabb2.max.y) && (aabb1.max.y >= aabb2.min.y) &&
-		(aabb1.min.z <= aabb2.max.z) && (aabb1.max.z >= aabb2.min.z)) {
+		(aabb1.min.z <= aabb2.max.z) && (aabb1.max.z >= aabb2.min.z))
+	{
 		return true;
 	}
 	else 
@@ -40,7 +42,8 @@ bool isCollision(const AABB& aabb, const Sphere& sphere)
 	{
 		return true;
 	}
-	else {
+	else
+	{
 		return false;
 	}
 }
@@ -76,6 +79,39 @@ bool isCollision(const OBB& obb, const Sphere& sphere)
 	Sphere sphereOBBLocal{ centerInOBBLocalSpace ,sphere.radius };
 
 	return isCollision(aabbOBBLocal, sphereOBBLocal);
+}
+
+bool isCollision(const KamataEngine::Vector2& square, const KamataEngine::Vector2& squareLength, const KamataEngine::Vector2& ChipPosition)
+{
+	Vector2 MapChipOrigin = {ChipPosition.x * chipSize + chipSize / 2, ChipPosition.y * chipSize + chipSize / 2};
+	if (sqrt((MapChipOrigin.x - square.x) * (MapChipOrigin.x - square.x)) <= squareLength.x / 2 + chipSize / 2 &&
+	    sqrt((MapChipOrigin.y - square.y) * (MapChipOrigin.y - square.y)) <= squareLength.y / 2 + chipSize / 2)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+bool isCollisionToMouse(const KamataEngine::Vector2& mouseSquareLength, const KamataEngine::Vector2& spriteSquare, const KamataEngine::Vector2& spriteSquareLength)
+{
+	POINT pos;
+	HWND hwnd = WinApp::GetInstance()->GetHwnd();
+	GetCursorPos(&pos);
+	ScreenToClient(hwnd, &pos);
+	Vector2 mousePos = {(float)pos.x, (float)pos.y};
+
+	if (sqrt((mousePos.x - spriteSquare.x) * (mousePos.x - spriteSquare.x)) <= mouseSquareLength.x / 2 + spriteSquareLength.x / 2 &&
+	    sqrt((mousePos.y - spriteSquare.y) * (mousePos.y - spriteSquare.y)) <= mouseSquareLength.y / 2 + spriteSquareLength.y / 2)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 bool isCollision(const Sphere& sphere1, const Sphere& sphere2)

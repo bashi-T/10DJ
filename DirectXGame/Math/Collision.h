@@ -1,6 +1,9 @@
 #pragma once
 #include<algorithm>
 #include "CGvector.h"
+#include "StageMapChip.h"
+#include <windows.h>
+#include <iostream>
 
 //bool IsCollision(const Segment&segment,const Plane&plane)
 //{
@@ -14,6 +17,7 @@
 //
 //}
 
+//spriteどうしの当たり判定 アンカーポイントを0.5に
 bool isCollision(const KamataEngine::Vector2& square1, const KamataEngine::Vector2& square1Length, const KamataEngine::Vector2& square2, const KamataEngine::Vector2& square2Length);
 
 bool isCollision(const AABB& aabb1, const AABB& aabb2);
@@ -21,6 +25,10 @@ bool isCollision(const AABB& aabb1, const AABB& aabb2);
 bool isCollision(const AABB& aabb, const Sphere& sphere);
 
 bool isCollision(const OBB& obb, const Sphere& sphere);
+
+bool isCollision(const KamataEngine::Vector2& square, const KamataEngine::Vector2& squareLength, const KamataEngine::Vector2& ChipPosition);
+
+bool isCollisionToMouse(const KamataEngine::Vector2& mouseSquareLength, const KamataEngine::Vector2& spriteSquare, const KamataEngine::Vector2& spriteSquareLength);
 
 //bool isCollision(const OBB& obb1, const OBB& obb2)
 //{
