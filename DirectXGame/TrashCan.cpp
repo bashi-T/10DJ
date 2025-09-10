@@ -1,6 +1,7 @@
 #include "TrashCan.h"
 #include "Math/Collision.h"
 
+
 TrashCan::TrashCan(uint32_t textureHandle)
 {
 	textureHandle_ = textureHandle;
@@ -28,6 +29,7 @@ void TrashCan::Update()
 
 void TrashCan::Draw()
 {
+
 	trashCan_->Draw();
 }
 

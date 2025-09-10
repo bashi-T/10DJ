@@ -1,5 +1,6 @@
 #pragma once
 #include <KamataEngine.h>
+#include "Confetti.h"
 class TrashCan
 {
 public:
@@ -19,7 +20,6 @@ public:
 private:
 
 	
-
 	KamataEngine::Sprite* trashCan_ = nullptr;
 	KamataEngine::Vector2 position_{  };
 

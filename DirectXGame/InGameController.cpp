@@ -10,14 +10,18 @@ InGameController::InGameController(const Vector2 screenSize) {
 
 	ShowCursor(false);
 	screenSize_ = screenSize;
-	screenEdgeOffset_ = 200.0f;
-	mouthTracker_ = new MouthTracker();
+	screenEdgeOffset_ = 2000.0f;
 	textureLoader_ = new TextureLoader();
+	effectController_ = new EffectController(textureLoader_);
+	mouthTracker_ = new MouthTracker();
+
 	audioLoader_ = new AudioLoader();
 	playerCursor_ = new PlayerCursor();
 	trashCan_ = new TrashCan(textureLoader_->GetTrashCanTexture());
 	wadPaper_ = new WadPaper(textureLoader_->GetWadPaperTexture(), 15.0f);
 	grabArea_ = new GrabArea(textureLoader_->GetGrabAreaTexture(), initialPaperPos_, { 400,400 });
+	portalA_ = new Portal({400, 0}, {400, screenSize_.y}, {400, 50}, textureLoader_->GetPortalTextureHandle());
+	portalB_ = new Portal({400, screenSize_.y}, {400, 0}, {400, 50}, textureLoader_->GetPortalTextureHandle());
 }
 
 InGameController::~InGameController() {
@@ -27,6 +31,9 @@ InGameController::~InGameController() {
 	delete trashCan_;
 	delete audioLoader_;
 	delete grabArea_;
+	delete portalA_;
+	delete portalB_;
+	delete effectController_;
 }
 
 
@@ -47,6 +54,10 @@ void InGameController::Initialize() {
 	
 	trashCan_->Initialize();
 	grabArea_->Initialize();
+
+	portalA_->Initialize();
+	portalB_->Initialize();
+	effectController_->Initialize();
 }
 
 
@@ -60,7 +71,9 @@ void InGameController::Update() {
 
 	trashCan_->Update();
 	grabArea_->Update();
-
+	portalA_->Update();
+	portalB_->Update();
+	effectController_->Update(life_);
 
 	if (!gameEndFlag_)
 	{
@@ -76,11 +89,13 @@ void InGameController::Update() {
 		{
 			isCanGrab_ = false;
 		}
+		Warp();
 	}
+	
 
 
 #ifdef _DEBUG
-	ImGui::Begin("Debug2");
+	ImGui::Begin("INGAME");
 	ImGui::Text("clearFlag %d", (int)clearFlag_);
 	ImGui::Text("life %d", (int)life_);
 	ImGui::End();
@@ -98,15 +113,22 @@ void InGameController::Update() {
 void InGameController::Draw() {
 	Sprite::PreDraw();
 
+	portalA_->Draw();
+	portalB_->Draw();
+
 	grabArea_->Draw();
 	if (!gameEndFlag_) 
 	{ 
 		wadPaper_->Draw();
 	}
+
+
+
 	trashCan_->Draw();
 
 	playerCursor_->Draw();
 
+	effectController_->Draw();
 
 	Sprite::PostDraw();
 }
@@ -167,6 +189,31 @@ void InGameController::GameOver()
 		gameEndFlag_ = true;
 		//wadPaper_->~WadPaper();
 		
+	}
+
+}
+
+void InGameController::Warp() 
+{
+	bool warpA=portalA_->Collision(wadPaper_->GetPosition(),wadPaper_->GetSize());
+	bool warpB=portalB_->Collision(wadPaper_->GetPosition(),wadPaper_->GetSize());
+
+	if (!warpA && !warpB) {
+		wadPaper_->SetWarping(false);
+	}
+	if ( wadPaper_->GetWarping()==true) {
+		return;
+	}
+
+	if (warpA) 
+	{
+		wadPaper_->SetPosition({wadPaper_->GetPosition().x - portalA_->GetDistance().x, wadPaper_->GetPosition().y - portalA_->GetDistance().y});
+		wadPaper_->SetWarping(true);
+	}
+	if (warpB) 
+	{
+		wadPaper_->SetPosition({wadPaper_->GetPosition().x - portalB_->GetDistance().x, wadPaper_->GetPosition().y - portalB_->GetDistance().y});
+		wadPaper_->SetWarping(true);
 	}
 
 }
