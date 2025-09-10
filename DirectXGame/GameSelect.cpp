@@ -36,8 +36,10 @@ void GameSelect::Initialize()
 			position = {500.0f, 400.0f};
 		}
 		
-		sprites_[i] = Sprite::Create(textureHandles_[i], position);
+        sprites_[i] = Sprite::Create(textureHandles_[i], position);
+        baseSpriteSize_[i] = sprites_[i]->GetSize();  // 元サイズを保存
 	}
+
 
 	uint32_t whiteTexture = TextureManager::Load("Fade.png");
     fadeSprite_ = Sprite::Create(whiteTexture, {screenWidth / 2.0f, screenHeight / 2.0f});
@@ -53,95 +55,71 @@ void GameSelect::Initialize()
 
 void GameSelect::Update()
 {
-	// デバッグカメラの更新
-	debugCamera_->Update();
+    debugCamera_->Update();
+    Input* input = Input::GetInstance();
 
-	// マウスカーソルの座標を取得 (KamataEngineの関数に置き換えてください)
-	Input* input = Input::GetInstance(); 
-
-	 // --- フェードイン処理（シーン開始） ---
+    // --- フェードイン処理 ---
     if (isFadingIn_) {
         fadeAlpha_ -= fadeSpeed_;
         if (fadeAlpha_ <= 0.0f) {
             fadeAlpha_ = 0.0f;
-            isFadingIn_ = false; // フェードイン完了、通常処理へ
+            isFadingIn_ = false;
         }
         fadeSprite_->SetColor({0.0f, 0.0f, 0.0f, fadeAlpha_});
-        return; // フェード中は他の入力やアニメは無効にするなら return
+        return;
     }
 
-    // --- フェードアウト処理（シーン遷移前） ---
+    // --- フェードアウト処理 ---
     if (isFadingOut_) {
         fadeAlpha_ += fadeSpeed_;
         if (fadeAlpha_ >= 1.0f) {
             fadeAlpha_ = 1.0f;
-            // フェードアウト完了 → シーン切替
-            // ここで実際にシーン切替を呼ぶ（SceneManager 等の実装に合わせて）
-            // 例: SceneManager::GetInstance()->ChangeScene(nextScene_);
+            // SceneManager::GetInstance()->ChangeScene(nextScene_);
         }
         fadeSprite_->SetColor({0.0f, 0.0f, 0.0f, fadeAlpha_});
-        return; // フェード中は入力やアニメ停止
+        return;
     }
 
-	if (hoveredSprite_ != -1 && input->IsTriggerMouse(0)) {
-    isFadingOut_ = true;
-    nextScene_ = hoveredSprite_ + 1;
-    fadeAlpha_ = 0.0f; // 透明 -> 構築するため 0 から増やす
-    fadeSprite_->SetColor({0.0f, 0.0f, 0.0f, fadeAlpha_});
+    // マウス座標の取得
+    Vector2 mousePos = input->GetMousePosition();
+
+    // ホバー判定
+hoveredSprite_ = -1;
+for (int i = 0; i < kStageCount; i++) {
+    Vector2 spritePos = sprites_[i]->GetPosition();
+    Vector2 spriteSize = sprites_[i]->GetSize();
+
+    float left   = spritePos.x - spriteSize.x ;
+    float right  = spritePos.x + spriteSize.x ;
+    float top    = spritePos.y - spriteSize.y ;
+    float bottom = spritePos.y + spriteSize.y ;
+
+    if (mousePos.x >= left && mousePos.x <= right &&
+        mousePos.y >= top  && mousePos.y <= bottom) {
+        hoveredSprite_ = i;
+        break;
+    }
 }
 
-	Vector2 mousePosition = input->GetMousePosition();
-
-	// マウスが重なっているスプライトを探す
-	hoveredSprite_ = -1; // いったんリセット
-	for (int i = 0; i < kStageCount; i++) {
-		Vector2 pos = sprites_[i]->GetPosition();
-		Vector2 size = sprites_[i]->GetSize(); // スプライトのサイズを取得
-
-		// マウスがスプライトの矩形内にあるか判定
-		if (mousePosition.x >= pos.x - size.x / 2 && mousePosition.x <= pos.x + size.x / 2 &&
-		    mousePosition.y >= pos.y - size.y / 2 && mousePosition.y <= pos.y + size.y / 2) {
-			hoveredSprite_ = i;
-			break; // 見つかったらループを抜ける
-		}
-	}
-
-	// 各スプライトのスケールを更新
-	for (int i = 0; i < kStageCount; i++) {
-		if (i == hoveredSprite_) {
-			// マウスが重なっているスプライトのアニメーション
-			animationTimer_ += 0.05f; // アニメーションの速度を少しずつ加算
-
-			// ▼▼▼ この部分をシンプルに修正 ▼▼▼
-			// cosfを使うと1.0から1.3の間を滑らかに往復する
-			float smoothScale = 1.15f + 0.15f * cosf(animationTimer_);
-			sprites_[i]->SetScale({smoothScale, smoothScale});
-
-		} else {
-			// マウスが重なっていないスプライトは元のサイズに戻す
-			sprites_[i]->SetScale({1.0f, 1.0f});
-		}
-	}
-
-	// animationTimer_が大きくなりすぎないようにリセット
-	if (animationTimer_ > 2.0f * 3.14159265f) {
-		animationTimer_ = 0.0f;
-	}
-	
-	
-#ifdef _DEBUG
-	ImGui::Begin("GameSelect");
-	ImGui::Text("This is GameSelect scene.");
-	// ▼▼▼ 3Dモデル用からスプライト用に修正 ▼▼▼
-	for (int i = 0; i < kStageCount; i++) {
-		// スプライトの2D座標をImGuiで調整できるようにする
-		KamataEngine::Vector2 pos = sprites_[i]->GetPosition();
-		ImGui::DragFloat2(("Sprite Pos " + std::to_string(i)).c_str(), &pos.x, 1.0f);
-		sprites_[i]->SetPosition(pos);
-	}
-	ImGui::End();
-#endif
+// スケーリング処理（判定とは別ループ）
+for (int i = 0; i < kStageCount; i++) {
+    if (i == hoveredSprite_) {
+        if (!wasHovered_[i]) {
+            sprites_[i]->SetSize({baseSpriteSize_[i].x * 2.0f, baseSpriteSize_[i].y * 2.0f});
+            animationTimer_ = 0.0f;
+            wasHovered_[i] = true;
+        } else {
+            animationTimer_ += 0.05f;
+            float smoothScale = 2.0f + 0.2f * cosf(animationTimer_);
+            sprites_[i]->SetSize({baseSpriteSize_[i].x * smoothScale, baseSpriteSize_[i].y * smoothScale});
+        }
+    } else {
+        sprites_[i]->SetSize(baseSpriteSize_[i]);
+        wasHovered_[i] = false;
+    }
 }
+}
+	
 
 void GameSelect::Draw()
 {
@@ -150,9 +128,6 @@ void GameSelect::Draw()
 	for(int i = 0; i < kStageCount; i++) {
 	    sprites_[i]->Draw();
 	}
-	for(int i = 0; i < kStageCount; i++) {
-    sprites_[i]->Draw();
-}
 if (fadeAlpha_ > 0.0f) {
     fadeSprite_->Draw();
 }

@@ -28,9 +28,11 @@ private:
 	uint32_t textureHandles_[kStageCount] = { 0 };    
 	Sprite*sprites_[kStageCount]={nullptr};
 
-	int hoveredSprite_ = -1; // マウスが重なっているスプライトの番号 (-1はどこにも重なっていない)
-    float animationTimer_ = 0.0f; // アニメーション用のタイマー
-    bool isScalingUp_ = true;    // trueなら拡大中、falseなら縮小中
+	    // ホバー管理
+    int hoveredSprite_ = -1;          // マウスが重なっているスプライトの番号 (-1 = なし)
+    bool wasHovered_[kStageCount]{};  // 前のフレームでホバーされてたかどうか
+    float animationTimer_ = 0.0f;     // アニメーション用のタイマー
+	Vector2 baseSpriteSize_[kStageCount];
 
 	Sprite* fadeSprite_{ nullptr }; 
 	bool isFadingIn_ = false;
