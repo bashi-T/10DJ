@@ -109,14 +109,16 @@ void InGameController::Update() {
 void InGameController::Draw() {
 	Sprite::PreDraw();
 
+	portalA_->Draw();
+	portalB_->Draw();
+
 	grabArea_->Draw();
 	if (!gameEndFlag_) 
 	{ 
 		wadPaper_->Draw();
 	}
 
-	portalA_->Draw();
-	portalB_->Draw();
+
 
 	trashCan_->Draw();
 
