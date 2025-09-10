@@ -159,6 +159,7 @@
   <ItemGroup>
     <ClCompile Include="AudioLoader.cpp" />
     <ClCompile Include="Block.cpp" />
+    <ClCompile Include="Fade.cpp" />
     <ClCompile Include="GrabArea.cpp" />
     <ClCompile Include="InGameController.cpp" />
     <ClCompile Include="GameSelect.cpp" />
@@ -280,6 +281,7 @@
   <ItemGroup>
     <ClInclude Include="AudioLoader.h" />
     <ClInclude Include="Block.h" />
+    <ClInclude Include="Fade.h" />
     <ClInclude Include="GrabArea.h" />
     <ClInclude Include="InGameController.h" />
     <ClInclude Include="GameSelect.h" />
